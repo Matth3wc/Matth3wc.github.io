@@ -6,7 +6,7 @@
     <!-- Viewport settings for responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Page title that appears in browser tab -->
-    <title>Your Name - Portfolio</title>
+    <title>Matthew Conway - Portfolio</title>
     <style>
         /* Reset default browser styles for consistency */
         * {
@@ -65,7 +65,7 @@
             padding: 0; /* No padding */
             margin-bottom: 12px; /* Space between links */
             transition: all 0.2s ease; /* Smooth transition for hover effects */
-            font-size: 20px; /* Text size */
+            font-size: 16px; /* Text size */
             text-align: left; /* Left align text */
             font-weight: 400; /* Normal weight */
             display: block; /* Make full width clickable */
@@ -133,7 +133,7 @@
         .study-item, .interest-item {
             margin-bottom: 30px; /* Space below each item */
             padding: 20px; /* Internal padding */
-            background: #ffffff; /* Clean white background */
+            background: #f7fafc; /* Very light background */
             border-radius: 8px; /* Rounded corners */
             border-left: 4px solid #81a1c1; /* Soft muted blue accent border on left */
         }
@@ -189,7 +189,7 @@
             align-items: center; /* Center items vertically */
             gap: 15px; /* Space between label and value */
             padding: 15px; /* Internal padding */
-            background: #ffffff; /* Clean white background */
+            background: #f7fafc; /* Very light background */
             border-radius: 8px; /* Rounded corners */
         }
 
@@ -208,6 +208,36 @@
         /* Contact item link hover effect */
         .contact-item a:hover {
             text-decoration: underline; /* Add underline on hover */
+        }
+
+        /* Project item styling */
+        .project-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 8px;
+            border-left: 4px solid #81a1c1;
+        }
+
+        .project-item h3 {
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .project-item .role {
+            color: #81a1c1;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .project-item ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .project-item li {
+            margin-bottom: 8px;
+            color: #4a5568;
         }
 
         /* Mobile responsive styles for screens 768px and smaller */
@@ -257,15 +287,14 @@
             <!-- HOME SECTION - Default active section -->
             <div id="home" class="section active">
                 <!-- Main heading with your name -->
-                <h1>Your Name</h1>
+                <h1>Matthew Conway</h1>
                 <!-- Introduction paragraph -->
                 <p class="blurb">
-                    Welcome to my portfolio! I'm a [your profession/field] passionate about [your interests]. 
-                    This is where I share my journey, work, and interests. Feel free to explore and get in touch!
+                    Welcome! I'm a penultimate year Theoretical Physics student at Trinity College Dublin, passionate about computational physics, mathematical modeling, and applying physics principles to real-world challenges. With a strong foundation in quantum mechanics, statistical physics, and computational methods, I'm driven by curiosity and the pursuit of innovative solutions.
                 </p>
                 <!-- Additional introduction paragraph -->
                 <p class="blurb">
-                    [Add another paragraph about yourself, your mission, or what drives you. Make it personal and engaging!]
+                    Currently maintaining first-class honours, I've engaged in research projects ranging from Monte Carlo integration methods to agent-based ecological modeling. Beyond academics, I enjoy exploring the intersection of physics, engineering, and sustainability—whether through offshore wind energy design or understanding complex systems dynamics.
                 </p>
             </div>
 
@@ -274,24 +303,13 @@
                 <!-- Section heading -->
                 <h2>Studies</h2>
                 
-                <!-- Study item card for most recent degree -->
+                <!-- Study item card for current degree -->
                 <div class="study-item">
-                    <h3>Degree Name - University Name</h3>
-                    <p class="date">2020 - 2024</p>
-                    <p>Description of your degree, major achievements, relevant coursework, thesis topic, or any honors received.</p>
-                </div>
-
-                <!-- Study item card for previous degree -->
-                <div class="study-item">
-                    <h3>Previous Degree - Institution</h3>
-                    <p class="date">2016 - 2020</p>
-                    <p>Details about your previous education, specializations, or notable projects completed during this time.</p>
-                </div>
-
-                <!-- Study item card for additional training -->
-                <div class="study-item">
-                    <h3>Certifications & Additional Training</h3>
-                    <p>List any relevant certifications, online courses, workshops, or specialized training you've completed.</p>
+                    <h3>B.A. (Mod) Theoretical Physics - Trinity College Dublin</h3>
+                    <p class="date">September 2023 - May 2027 (Expected)</p>
+                    <p><strong>Grade:</strong> First-class honours maintained each year</p>
+                    <p style="margin-top: 10px;"><strong>Relevant Coursework:</strong> Quantum Mechanics, Statistical Physics, Classical Field Theory, Chaos & Complexity, Condensed Matter, Computational Physics, Linear Algebra, Multivariable Calculus, Statistics and Probability, Fourier Analysis, ODEs, Experimental Physics Laboratories</p>
+                    <p style="margin-top: 10px;"><strong>Extracurriculars:</strong> Active member of the Theoretical Physics Student Association, Mathematics Society, participated in Plancks international physics competition. Also involved in Cards Society (poker), Surf Society, and Jazz Society.</p>
                 </div>
             </div>
 
@@ -300,22 +318,22 @@
                 <!-- Section heading -->
                 <h2>Interests</h2>
                 
-                <!-- Interest item card -->
+                <!-- Academic interests -->
                 <div class="interest-item">
-                    <h3>Professional Interest 1</h3>
-                    <p>Describe a professional or academic interest. What aspects fascinate you? What projects or research have you done in this area?</p>
+                    <h3>Computational Physics & Mathematical Modeling</h3>
+                    <p>Fascinated by the power of computational methods to solve complex physics problems. Through research on Monte Carlo integration and agent-based modeling, I've developed a deep appreciation for how simulation and numerical methods can reveal insights into systems ranging from quantum mechanics to ecological dynamics.</p>
                 </div>
 
-                <!-- Interest item card -->
+                <!-- Research interests -->
                 <div class="interest-item">
-                    <h3>Professional Interest 2</h3>
-                    <p>Another area of professional interest. Explain why it matters to you and how you engage with it.</p>
+                    <h3>Renewable Energy & Sustainability Engineering</h3>
+                    <p>Passionate about applying physics and engineering principles to address climate challenges. My work with Trinity Floating Offshore Wind allowed me to contribute to novel platform designs that optimize power generation while maintaining structural integrity—combining theoretical knowledge with practical engineering innovation.</p>
                 </div>
 
-                <!-- Interest item card for personal hobbies -->
+                <!-- Personal interests -->
                 <div class="interest-item">
-                    <h3>Personal Interests & Hobbies</h3>
-                    <p>Share your personal interests outside of work/study. What do you do in your free time? Any hobbies, sports, creative pursuits, or volunteer work?</p>
+                    <h3>Personal Pursuits</h3>
+                    <p>Outside of academics, I enjoy playing guitar, surfing the Irish coast, and mountain biking. I also follow developments in geopolitics and international relations, finding connections between complex systems thinking in physics and global dynamics fascinating. These activities keep me grounded and provide fresh perspectives on problem-solving.</p>
                 </div>
             </div>
 
@@ -328,39 +346,71 @@
                 <div class="cv-section">
                     <h3>Experience</h3>
                     
-                    <!-- CV item for current/recent job -->
+                    <!-- Computational Physics Intern -->
                     <div class="cv-item">
-                        <h4>Job Title - Company Name</h4>
-                        <p class="date">Month Year - Present</p>
-                        <p>Description of your role, responsibilities, and key achievements. Include specific projects or impacts you made.</p>
+                        <h4>Computational Physics Intern - Hamilton Mathematics Institute, Trinity College Dublin</h4>
+                        <p class="date">May 2025 - June 2025</p>
+                        <p>Awarded stipend as part of a three-person research team to conduct a comprehensive review of Markov Chain Monte Carlo integration methods under Prof. Stefan Sint's supervision.</p>
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li>Developed and benchmarked MCMC integration methods including importance sampling, Metropolis-Hastings, Gibbs sampling, and Hybrid MCMC + KDE approaches</li>
+                            <li>Quantified uncertainty and tested methods across various finite functions, expanding into multidimensional integrals to observe how uncertainty and computational burden scale with dimensions</li>
+                            <li>Documented integration schemes, simulated experiments, and results in a comprehensive <a href="https://drive.google.com/file/d/179GCpj2jolPjxRvibqczu_LUymO6WBry/view?usp=share_link" target="_blank" style="color: #81a1c1;">research paper</a></li>
+                        </ul>
                     </div>
 
-                    <!-- CV item for previous job -->
+                    <!-- Recruitment Consultant -->
                     <div class="cv-item">
-                        <h4>Previous Position - Company</h4>
-                        <p class="date">Month Year - Month Year</p>
-                        <p>Details about this position, what you learned, and contributions you made.</p>
+                        <h4>Recruitment Consultant - Your World Healthcare</h4>
+                        <p class="date">November 2022 - June 2023</p>
+                        <p>Gap year position to help finance university studies, managing healthcare recruitment for hospitals, ID centers, and CAMHS facilities.</p>
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li>Managed volatile client demand by forecasting shift requirements and building contingency plans to ensure 100% coverage, minimizing revenue loss through strategic recruitment area overlap</li>
+                            <li>Launched and scaled the first Cork-based team from 0 to 12 staff within 3 months, secured 3 new healthcare provider clients, and generated consistent weekly placements</li>
+                            <li>Expanded operations beyond Dublin office scope, creating new revenue streams in previously neglected regions</li>
+                        </ul>
+                    </div>
+
+                    <!-- Private Tutor -->
+                    <div class="cv-item">
+                        <h4>Private Maths Tutor - Self-Employed</h4>
+                        <p class="date">September 2022 - Ongoing</p>
+                        <p>Delivered tailored mathematics tutoring to over 30 secondary students, with consistent grade improvements reflected across the cohort.</p>
+                    </div>
+                </div>
+
+                <!-- Projects subsection -->
+                <div class="cv-section">
+                    <h3>Projects</h3>
+                    
+                    <!-- Trinity Floating Offshore Wind -->
+                    <div class="project-item">
+                        <h3>Trinity Floating Offshore Wind</h3>
+                        <p class="role">Structural Design Lead | September 2024 - Ongoing</p>
+                        <ul>
+                            <li>Won 1st place in power generation at the Floating Wind Challenge, competing against teams from University of Tokyo, National University of Singapore, École des Ponts, Nova College NL, and others</li>
+                            <li>Developed novel floating platform design featuring a retractable keel mounted to a Tri-Floater base via custom bearing design, effectively decoupling turbine from roll, yaw, and pitch movements</li>
+                            <li>Validated structural integrity and optimized power generation through testing at LIR National Ocean Test Facility, Cork. Full project design and development proposal available in our <a href="https://drive.google.com/file/d/1m62OI6be7ngSfS3WAMtcEV6Wfb7k-ewl/view?usp=share_link" target="_blank" style="color: #81a1c1;">detailed report</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Agent-Based Model -->
+                    <div class="project-item">
+                        <h3>Agent-Based Model of Bee/Flora Dynamics</h3>
+                        <p class="role">Student Led Research Project | January 2025 - May 2025</p>
+                        <ul>
+                            <li>Simulated population dynamics of pollinators and flora under various exogenous shocks representing different urbanization scenarios</li>
+                            <li>Observed self-reinforcing cycles between populations, with varied distribution of outcomes highly dependent on initial conditions and urbanization type (urban sprawl, green spaces, large-scale concrete developments)</li>
+                            <li>Consulted with pollinator and agent-based modeling specialists to form inferences regarding urban planning policy effects on ecosystems. Final findings documented in our <a href="https://drive.google.com/file/d/1VWdwEXWbJp-vMxH_CRAxjpLG2LeqVXms/view?usp=share_link" target="_blank" style="color: #81a1c1;">research report</a></li>
+                        </ul>
                     </div>
                 </div>
 
                 <!-- Skills subsection -->
                 <div class="cv-section">
                     <h3>Skills</h3>
-                    <p><strong>Technical Skills:</strong> List your technical skills, programming languages, tools, software, etc.</p>
-                    <p><strong>Languages:</strong> List languages you speak and proficiency levels.</p>
-                    <p><strong>Other Skills:</strong> Any other relevant skills like leadership, communication, project management, etc.</p>
-                </div>
-
-                <!-- Publications and projects subsection -->
-                <div class="cv-section">
-                    <h3>Publications & Projects</h3>
-                    
-                    <!-- CV item for a project or publication -->
-                    <div class="cv-item">
-                        <h4>Project or Publication Title</h4>
-                        <p class="date">Year</p>
-                        <p>Brief description of the project or publication, its significance, and your role.</p>
-                    </div>
+                    <p><strong>Programming:</strong> Python, C++, HTML, CSS, Swift, LaTeX, SolidWorks</p>
+                    <p><strong>Technical:</strong> Monte Carlo methods, computational modeling, statistical analysis, CAD design, experimental physics techniques</p>
+                    <p><strong>Languages:</strong> English (native), Irish (conversational)</p>
                 </div>
             </div>
 
@@ -374,32 +424,53 @@
                     <!-- Email contact item -->
                     <div class="contact-item">
                         <strong>Email:</strong>
-                        <a href="mailto:your.email@example.com">your.email@example.com</a>
+                        <a href="mailto:mconway1@tcd.ie">mconway1@tcd.ie</a>
                     </div>
 
                     <!-- LinkedIn contact item -->
                     <div class="contact-item">
                         <strong>LinkedIn:</strong>
-                        <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a>
+                        <a href="https://www.linkedin.com/in/matthew-conway-91909623b" target="_blank">linkedin.com/in/matthew-conway-91909623b</a>
                     </div>
 
                     <!-- GitHub contact item -->
                     <div class="contact-item">
                         <strong>GitHub:</strong>
-                        <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+                        <a href="https://github.com/Matth3wc" target="_blank">github.com/Matth3wc</a>
+                    </div>
+
+                    <!-- Phone contact item -->
+                    <div class="contact-item">
+                        <strong>Phone:</strong>
+                        <span>+353 673 239 671</span>
                     </div>
 
                     <!-- Location contact item -->
                     <div class="contact-item">
                         <strong>Location:</strong>
-                        <span>Your City, Country</span>
+                        <span>Dublin, Ireland (Dual Irish-US Citizen)</span>
                     </div>
                 </div>
 
                 <!-- Closing message -->
                 <p style="margin-top: 40px; color: #718096;">
-                    Feel free to reach out if you'd like to collaborate, discuss opportunities, or just chat about shared interests!
+                    Feel free to reach out if you'd like to discuss research opportunities, collaborative projects, or just chat about physics, renewable energy, or computational methods. I'm always open to connecting with fellow researchers and enthusiasts!
                 </p>
+
+                <!-- References section -->
+                <div style="margin-top: 40px;">
+                    <h3 style="color: #2d3748; margin-bottom: 15px;">References</h3>
+                    <p style="margin-bottom: 10px;">
+                        <strong>Dr. Chaolun Wu</strong><br>
+                        <span style="color: #718096; font-size: 14px;">Teaching Fellow, School of Mathematics, Trinity College Dublin</span><br>
+                        <a href="mailto:WUCH@tcd.ie" style="color: #81a1c1;">WUCH@tcd.ie</a>
+                    </p>
+                    <p>
+                        <strong>Dr. Craig Meskell</strong><br>
+                        <span style="color: #718096; font-size: 14px;">Associate Professor, Department of Mechanical and Manufacturing Engineering, Trinity College Dublin</span><br>
+                        <a href="mailto:cmeskell@tcd.ie" style="color: #81a1c1;">cmeskell@tcd.ie</a>
+                    </p>
+                </div>
             </div>
         </div>
 
