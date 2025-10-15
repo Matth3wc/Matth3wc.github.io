@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for the document -->
+    <meta charset="UTF-8">
+    <!-- Viewport settings for responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title that appears in browser tab -->
+    <title>Your Name - Portfolio</title>
+    <style>
+        /* Reset default browser styles for consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Include padding and border in element's total width/height */
+        }
+
+        /* Base body styling */
+        body {
+            /* Modern system font stack for cross-platform consistency */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6; /* Comfortable line spacing for readability */
+            color: #4a5568; /* Soft gray text color */
+            background: #ffffff; /* Clean white background */
+        }
+
+        /* Main container using flexbox layout */
+        .container {
+            display: flex; /* Enable flexbox */
+            min-height: 100vh; /* Minimum height of viewport */
+        }
+
+        /* Left content area styling */
+        .content {
+            flex: 1; /* Take up remaining space after sidebar */
+            padding: 80px 60px; /* Top/bottom and left/right padding */
+            margin-right: 280px; /* Make space for fixed sidebar */
+            background: #ffffff; /* Clean white background */
+        }
+
+        /* Right sidebar navigation styling */
+        .sidebar {
+            width: 280px; /* Fixed width for sidebar */
+            background: #ffffff; /* White background to match content */
+            color: #4a5568; /* Soft gray text color */
+            position: fixed; /* Stay fixed on screen */
+            right: 0; /* Align to right edge */
+            top: 80px; /* Align with content top padding */
+            height: 100vh; /* Full viewport height */
+            padding: 0 40px; /* Left/right padding only */
+            border-left: 1px solid #e2e8f0; /* Soft gray separator line */
+        }
+
+        /* Navigation container inside sidebar */
+        .sidebar nav {
+            display: flex; /* Enable flexbox */
+            flex-direction: column; /* Stack links vertically */
+            gap: 0; /* No gap, use margin on links instead */
+        }
+
+        /* Navigation link styling */
+        .sidebar a {
+            color: #718096; /* Soft medium gray text */
+            text-decoration: none; /* Remove underline */
+            padding: 0; /* No padding */
+            margin-bottom: 12px; /* Space between links */
+            transition: all 0.2s ease; /* Smooth transition for hover effects */
+            font-size: 20px; /* Text size */
+            text-align: left; /* Left align text */
+            font-weight: 400; /* Normal weight */
+            display: block; /* Make full width clickable */
+        }
+
+        /* Navigation link hover effect */
+        .sidebar a:hover {
+            color: #2d3748; /* Darker gray on hover */
+        }
+
+        /* Active navigation link styling */
+        .sidebar a.active {
+            color: #81a1c1; /* Soft muted blue for active page */
+            font-weight: 500; /* Slightly bolder for active state */
+        }
+
+        /* Section container - hidden by default */
+        .section {
+            display: none; /* Hide all sections initially */
+            animation: fadeIn 0.5s ease; /* Fade in animation when displayed */
+        }
+
+        /* Active section - visible */
+        .section.active {
+            display: block; /* Show active section */
+        }
+
+        /* Fade in animation definition */
+        @keyframes fadeIn {
+            from {
+                opacity: 0; /* Start transparent */
+                transform: translateY(20px); /* Start slightly below */
+            }
+            to {
+                opacity: 1; /* End fully visible */
+                transform: translateY(0); /* End in normal position */
+            }
+        }
+
+        /* Main heading (H1) styling */
+        h1 {
+            font-size: 48px; /* Large text size */
+            margin-bottom: 20px; /* Space below heading */
+            color: #2d3748; /* Soft dark gray color */
+        }
+
+        /* Section heading (H2) styling */
+        h2 {
+            font-size: 36px; /* Medium-large text size */
+            margin-bottom: 30px; /* Space below heading */
+            color: #2d3748; /* Soft dark gray color */
+            border-bottom: 3px solid #81a1c1; /* Soft muted blue underline */
+            padding-bottom: 10px; /* Space between text and underline */
+        }
+
+        /* Blurb/introduction paragraph styling */
+        .blurb {
+            font-size: 20px; /* Slightly larger than body text */
+            color: #718096; /* Soft medium gray color */
+            margin-bottom: 30px; /* Space below paragraph */
+            line-height: 1.8; /* Extra spacing between lines */
+        }
+
+        /* Study and interest item card styling */
+        .study-item, .interest-item {
+            margin-bottom: 30px; /* Space below each item */
+            padding: 20px; /* Internal padding */
+            background: #ffffff; /* Clean white background */
+            border-radius: 8px; /* Rounded corners */
+            border-left: 4px solid #81a1c1; /* Soft muted blue accent border on left */
+        }
+
+        /* Headings inside study and interest items */
+        .study-item h3, .interest-item h3 {
+            color: #2d3748; /* Soft dark gray color */
+            margin-bottom: 10px; /* Space below heading */
+        }
+
+        /* CV section container */
+        .cv-section {
+            margin-bottom: 40px; /* Space below section */
+        }
+
+        /* CV section headings */
+        .cv-section h3 {
+            color: #2d3748; /* Soft dark gray color */
+            margin-bottom: 15px; /* Space below heading */
+            font-size: 24px; /* Text size */
+        }
+
+        /* Individual CV item styling */
+        .cv-item {
+            margin-bottom: 20px; /* Space below item */
+            padding-left: 20px; /* Left padding for indentation */
+            border-left: 2px solid #81a1c1; /* Soft muted blue accent border on left */
+        }
+
+        /* CV item heading */
+        .cv-item h4 {
+            color: #2d3748; /* Soft dark gray color */
+            margin-bottom: 5px; /* Small space below */
+        }
+
+        /* Date text in CV items */
+        .cv-item .date {
+            color: #81a1c1; /* Soft muted blue color for dates */
+            font-weight: bold; /* Bold text */
+            margin-bottom: 5px; /* Small space below */
+        }
+
+        /* Contact information container */
+        .contact-info {
+            display: flex; /* Enable flexbox */
+            flex-direction: column; /* Stack items vertically */
+            gap: 20px; /* Space between contact items */
+        }
+
+        /* Individual contact item styling */
+        .contact-item {
+            display: flex; /* Enable flexbox */
+            align-items: center; /* Center items vertically */
+            gap: 15px; /* Space between label and value */
+            padding: 15px; /* Internal padding */
+            background: #ffffff; /* Clean white background */
+            border-radius: 8px; /* Rounded corners */
+        }
+
+        /* Contact item labels */
+        .contact-item strong {
+            color: #2d3748; /* Soft dark gray color */
+            min-width: 100px; /* Minimum width for alignment */
+        }
+
+        /* Contact item links */
+        .contact-item a {
+            color: #81a1c1; /* Soft muted blue link color */
+            text-decoration: none; /* Remove underline */
+        }
+
+        /* Contact item link hover effect */
+        .contact-item a:hover {
+            text-decoration: underline; /* Add underline on hover */
+        }
+
+        /* Mobile responsive styles for screens 768px and smaller */
+        @media (max-width: 768px) {
+            /* Change container to vertical stack on mobile */
+            .container {
+                flex-direction: column; /* Stack content and sidebar vertically */
+            }
+
+            /* Adjust sidebar for mobile */
+            .sidebar {
+                position: relative; /* Remove fixed positioning */
+                width: 100%; /* Full width */
+                height: auto; /* Auto height */
+                padding: 20px; /* Reduced padding */
+                top: 0; /* Reset top position */
+            }
+
+            /* Horizontal navigation on mobile */
+            .sidebar nav {
+                flex-direction: row; /* Stack links horizontally */
+                flex-wrap: wrap; /* Allow wrapping to next line */
+            }
+
+            /* Reduce content padding on mobile */
+            .content {
+                padding: 40px 20px; /* Reduced padding */
+                margin-right: 0; /* Remove margin */
+            }
+
+            /* Smaller heading sizes on mobile */
+            h1 {
+                font-size: 36px; /* Reduced from 48px */
+            }
+
+            h2 {
+                font-size: 28px; /* Reduced from 36px */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container for the entire page -->
+    <div class="container">
+        <!-- Left side content area -->
+        <div class="content">
+            <!-- HOME SECTION - Default active section -->
+            <div id="home" class="section active">
+                <!-- Main heading with your name -->
+                <h1>Your Name</h1>
+                <!-- Introduction paragraph -->
+                <p class="blurb">
+                    Welcome to my portfolio! I'm a [your profession/field] passionate about [your interests]. 
+                    This is where I share my journey, work, and interests. Feel free to explore and get in touch!
+                </p>
+                <!-- Additional introduction paragraph -->
+                <p class="blurb">
+                    [Add another paragraph about yourself, your mission, or what drives you. Make it personal and engaging!]
+                </p>
+            </div>
+
+            <!-- STUDIES SECTION - Hidden by default -->
+            <div id="studies" class="section">
+                <!-- Section heading -->
+                <h2>Studies</h2>
+                
+                <!-- Study item card for most recent degree -->
+                <div class="study-item">
+                    <h3>Degree Name - University Name</h3>
+                    <p class="date">2020 - 2024</p>
+                    <p>Description of your degree, major achievements, relevant coursework, thesis topic, or any honors received.</p>
+                </div>
+
+                <!-- Study item card for previous degree -->
+                <div class="study-item">
+                    <h3>Previous Degree - Institution</h3>
+                    <p class="date">2016 - 2020</p>
+                    <p>Details about your previous education, specializations, or notable projects completed during this time.</p>
+                </div>
+
+                <!-- Study item card for additional training -->
+                <div class="study-item">
+                    <h3>Certifications & Additional Training</h3>
+                    <p>List any relevant certifications, online courses, workshops, or specialized training you've completed.</p>
+                </div>
+            </div>
+
+            <!-- INTERESTS SECTION - Hidden by default -->
+            <div id="interests" class="section">
+                <!-- Section heading -->
+                <h2>Interests</h2>
+                
+                <!-- Interest item card -->
+                <div class="interest-item">
+                    <h3>Professional Interest 1</h3>
+                    <p>Describe a professional or academic interest. What aspects fascinate you? What projects or research have you done in this area?</p>
+                </div>
+
+                <!-- Interest item card -->
+                <div class="interest-item">
+                    <h3>Professional Interest 2</h3>
+                    <p>Another area of professional interest. Explain why it matters to you and how you engage with it.</p>
+                </div>
+
+                <!-- Interest item card for personal hobbies -->
+                <div class="interest-item">
+                    <h3>Personal Interests & Hobbies</h3>
+                    <p>Share your personal interests outside of work/study. What do you do in your free time? Any hobbies, sports, creative pursuits, or volunteer work?</p>
+                </div>
+            </div>
+
+            <!-- CV SECTION - Hidden by default -->
+            <div id="cv" class="section">
+                <!-- Section heading -->
+                <h2>CV</h2>
+                
+                <!-- Experience subsection -->
+                <div class="cv-section">
+                    <h3>Experience</h3>
+                    
+                    <!-- CV item for current/recent job -->
+                    <div class="cv-item">
+                        <h4>Job Title - Company Name</h4>
+                        <p class="date">Month Year - Present</p>
+                        <p>Description of your role, responsibilities, and key achievements. Include specific projects or impacts you made.</p>
+                    </div>
+
+                    <!-- CV item for previous job -->
+                    <div class="cv-item">
+                        <h4>Previous Position - Company</h4>
+                        <p class="date">Month Year - Month Year</p>
+                        <p>Details about this position, what you learned, and contributions you made.</p>
+                    </div>
+                </div>
+
+                <!-- Skills subsection -->
+                <div class="cv-section">
+                    <h3>Skills</h3>
+                    <p><strong>Technical Skills:</strong> List your technical skills, programming languages, tools, software, etc.</p>
+                    <p><strong>Languages:</strong> List languages you speak and proficiency levels.</p>
+                    <p><strong>Other Skills:</strong> Any other relevant skills like leadership, communication, project management, etc.</p>
+                </div>
+
+                <!-- Publications and projects subsection -->
+                <div class="cv-section">
+                    <h3>Publications & Projects</h3>
+                    
+                    <!-- CV item for a project or publication -->
+                    <div class="cv-item">
+                        <h4>Project or Publication Title</h4>
+                        <p class="date">Year</p>
+                        <p>Brief description of the project or publication, its significance, and your role.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACT SECTION - Hidden by default -->
+            <div id="contact" class="section">
+                <!-- Section heading -->
+                <h2>Contact</h2>
+                
+                <!-- Contact information container -->
+                <div class="contact-info">
+                    <!-- Email contact item -->
+                    <div class="contact-item">
+                        <strong>Email:</strong>
+                        <a href="mailto:your.email@example.com">your.email@example.com</a>
+                    </div>
+
+                    <!-- LinkedIn contact item -->
+                    <div class="contact-item">
+                        <strong>LinkedIn:</strong>
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a>
+                    </div>
+
+                    <!-- GitHub contact item -->
+                    <div class="contact-item">
+                        <strong>GitHub:</strong>
+                        <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+                    </div>
+
+                    <!-- Location contact item -->
+                    <div class="contact-item">
+                        <strong>Location:</strong>
+                        <span>Your City, Country</span>
+                    </div>
+                </div>
+
+                <!-- Closing message -->
+                <p style="margin-top: 40px; color: #718096;">
+                    Feel free to reach out if you'd like to collaborate, discuss opportunities, or just chat about shared interests!
+                </p>
+            </div>
+        </div>
+
+        <!-- Right sidebar navigation -->
+        <div class="sidebar">
+            <nav>
+                <!-- Navigation link to Home section - active by default -->
+                <a href="#home" class="nav-link active" onclick="showSection('home')">Home</a>
+                <!-- Navigation link to Studies section -->
+                <a href="#studies" class="nav-link" onclick="showSection('studies')">Studies</a>
+                <!-- Navigation link to Interests section -->
+                <a href="#interests" class="nav-link" onclick="showSection('interests')">Interests</a>
+                <!-- Navigation link to CV section -->
+                <a href="#cv" class="nav-link" onclick="showSection('cv')">CV</a>
+                <!-- Navigation link to Contact section -->
+                <a href="#contact" class="nav-link" onclick="showSection('contact')">Contact</a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        // Function to show selected section and hide others
+        function showSection(sectionId) {
+            // Get all section elements
+            const sections = document.querySelectorAll('.section');
+            // Loop through each section
+            sections.forEach(section => {
+                // Remove 'active' class to hide section
+                section.classList.remove('active');
+            });
+
+            // Show the selected section by adding 'active' class
+            document.getElementById(sectionId).classList.add('active');
+
+            // Get all navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            // Loop through each navigation link
+            navLinks.forEach(link => {
+                // Remove 'active' class from all links
+                link.classList.remove('active');
+            });
+            // Add 'active' class to clicked link
+            event.target.classList.add('active');
+
+            // Prevent default link behavior (page jump)
+            event.preventDefault();
+        }
+    </script>
+</body>
+</html>
