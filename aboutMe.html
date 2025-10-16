@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <!-- Character encoding for the document -->
     <meta charset="UTF-8">
@@ -8,6 +8,17 @@
     <!-- Page title that appears in browser tab -->
     <title>Matthew Conway - Portfolio</title>
     <style>
+        /* ========= Dark-mode design tokens (permanent) ========= */
+        :root, :root.dark{
+            --bg:        #0b1220;   /* page background */
+            --surface:   #101827;   /* cards / panels */
+            --text:      #93a2b6;   /* main text */
+            --muted:     #94a3b8;   /* secondary text */
+            --heading:   #b2bfcf;   /* headings */
+            --accent:    #8ab4f8;   /* links / accents */
+            --border:    #253046;   /* separators */
+        }
+
         /* Reset default browser styles for consistency */
         * {
             margin: 0;
@@ -20,8 +31,8 @@
             /* Modern system font stack for cross-platform consistency */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6; /* Comfortable line spacing for readability */
-            color: #4a5568; /* Soft gray text color */
-            background: #ffffff; /* Clean white background */
+            color: var(--text); /* Text */
+            background: var(--bg); /* Background */
         }
 
         /* Main container using flexbox layout */
@@ -35,20 +46,20 @@
             flex: 1; /* Take up remaining space after sidebar */
             padding: 80px 60px; /* Top/bottom and left/right padding */
             margin-right: 280px; /* Make space for fixed sidebar */
-            background: #ffffff; /* Clean white background */
+            background: var(--bg); /* Match page background */
         }
 
         /* Right sidebar navigation styling */
         .sidebar {
             width: 280px; /* Fixed width for sidebar */
-            background: #ffffff; /* White background to match content */
-            color: #4a5568; /* Soft gray text color */
+            background: var(--bg); /* Match content */
+            color: var(--text); /* Text color */
             position: fixed; /* Stay fixed on screen */
             right: 0; /* Align to right edge */
             top: 80px; /* Align with content top padding */
             height: 100vh; /* Full viewport height */
             padding: 0 40px; /* Left/right padding only */
-            border-left: 1px solid #e2e8f0; /* Soft gray separator line */
+            border-left: 1px solid var(--border); /* Separator line */
         }
 
         /* Navigation container inside sidebar */
@@ -60,7 +71,7 @@
 
         /* Navigation link styling */
         .sidebar a {
-            color: #718096; /* Soft medium gray text */
+            color: var(--muted); /* Secondary text */
             text-decoration: none; /* Remove underline */
             padding: 0; /* No padding */
             margin-bottom: 12px; /* Space between links */
@@ -73,12 +84,12 @@
 
         /* Navigation link hover effect */
         .sidebar a:hover {
-            color: #2d3748; /* Darker gray on hover */
+            color: var(--text); /* Brighter on hover */
         }
 
         /* Active navigation link styling */
         .sidebar a.active {
-            color: #81a1c1; /* Soft muted blue for active page */
+            color: var(--accent); /* Accent for active page */
             font-weight: 500; /* Slightly bolder for active state */
         }
 
@@ -94,37 +105,52 @@
         }
 
         /* Fade in animation definition */
+        /* No-bounce fade: opacity only */
         @keyframes fadeIn {
-            from {
-                opacity: 0; /* Start transparent */
-                transform: translateY(20px); /* Start slightly below */
-            }
-            to {
-                opacity: 1; /* End fully visible */
-                transform: translateY(0); /* End in normal position */
-            }
+            from { opacity: 1; }
+            to   { opacity: 1; }
+        }
+
+        /* Ensure nothing else sneaks in */
+        .section { 
+            animation: fadeIn 300ms linear;   /* or keep your 0.5s */
+            transform: none !important;
+        }
+
+        /* Accessibility: respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .section { animation: none; }
         }
 
         /* Main heading (H1) styling */
         h1 {
             font-size: 48px; /* Large text size */
-            margin-bottom: 20px; /* Space below heading */
-            color: #2d3748; /* Soft dark gray color */
+            margin-bottom: 10px; /* Reduced space below heading */
+            color: var(--heading); /* Heading color */
+        }
+
+        /* Subheading styling */
+        .subheading {
+            font-size: 22px; /* Slightly smaller than main heading */
+            color: var(--muted); /* Soft medium gray color */
+            margin-bottom: 20px; /* Space below subheading */
+            font-weight: 400; /* Normal weight */
+            font-style: italic; /* Italic style for distinction */
         }
 
         /* Section heading (H2) styling */
         h2 {
             font-size: 36px; /* Medium-large text size */
             margin-bottom: 30px; /* Space below heading */
-            color: #2d3748; /* Soft dark gray color */
-            border-bottom: 3px solid #81a1c1; /* Soft muted blue underline */
+            color: var(--text); /* Heading text */
+            border-bottom: 3px solid var(--accent); /* Accent underline */
             padding-bottom: 10px; /* Space between text and underline */
         }
 
         /* Blurb/introduction paragraph styling */
         .blurb {
             font-size: 20px; /* Slightly larger than body text */
-            color: #718096; /* Soft medium gray color */
+            color: var(--muted); /* Secondary text color */
             margin-bottom: 30px; /* Space below paragraph */
             line-height: 1.8; /* Extra spacing between lines */
         }
@@ -133,14 +159,14 @@
         .study-item, .interest-item {
             margin-bottom: 30px; /* Space below each item */
             padding: 20px; /* Internal padding */
-            background: #f7fafc; /* Very light background */
+            background: var(--surface); /* Card background */
             border-radius: 8px; /* Rounded corners */
-            border-left: 4px solid #81a1c1; /* Soft muted blue accent border on left */
+            border-left: 4px solid var(--accent); /* Accent border on left */
         }
 
         /* Headings inside study and interest items */
         .study-item h3, .interest-item h3 {
-            color: #2d3748; /* Soft dark gray color */
+            color: var(--text); /* Text color */
             margin-bottom: 10px; /* Space below heading */
         }
 
@@ -151,7 +177,7 @@
 
         /* CV section headings */
         .cv-section h3 {
-            color: #2d3748; /* Soft dark gray color */
+            color: var(--text); /* Text color */
             margin-bottom: 15px; /* Space below heading */
             font-size: 24px; /* Text size */
         }
@@ -160,18 +186,18 @@
         .cv-item {
             margin-bottom: 20px; /* Space below item */
             padding-left: 20px; /* Left padding for indentation */
-            border-left: 2px solid #81a1c1; /* Soft muted blue accent border on left */
+            border-left: 2px solid var(--accent); /* Accent border */
         }
 
         /* CV item heading */
         .cv-item h4 {
-            color: #2d3748; /* Soft dark gray color */
+            color: var(--text); /* Text color */
             margin-bottom: 5px; /* Small space below */
         }
 
         /* Date text in CV items */
         .cv-item .date {
-            color: #81a1c1; /* Soft muted blue color for dates */
+            color: var(--accent); /* Accent color for dates */
             font-weight: bold; /* Bold text */
             margin-bottom: 5px; /* Small space below */
         }
@@ -189,19 +215,18 @@
             align-items: center; /* Center items vertically */
             gap: 15px; /* Space between label and value */
             padding: 15px; /* Internal padding */
-            background: #f7fafc; /* Very light background */
             border-radius: 8px; /* Rounded corners */
         }
 
         /* Contact item labels */
         .contact-item strong {
-            color: #2d3748; /* Soft dark gray color */
+            color: var(--text); /* Text color */
             min-width: 100px; /* Minimum width for alignment */
         }
 
         /* Contact item links */
         .contact-item a {
-            color: #81a1c1; /* Soft muted blue link color */
+            color: var(--accent); /* Link color */
             text-decoration: none; /* Remove underline */
         }
 
@@ -214,18 +239,18 @@
         .project-item {
             margin-bottom: 30px;
             padding: 20px;
-            background: #f7fafc;
+            background: var(--surface);
             border-radius: 8px;
-            border-left: 4px solid #81a1c1;
+            border-left: 4px solid var(--accent);
         }
 
         .project-item h3 {
-            color: #2d3748;
+            color: var(--text);
             margin-bottom: 5px;
         }
 
         .project-item .role {
-            color: #81a1c1;
+            color: var(--accent);
             font-style: italic;
             margin-bottom: 10px;
         }
@@ -237,7 +262,7 @@
 
         .project-item li {
             margin-bottom: 8px;
-            color: #4a5568;
+            color: var(--text);
         }
 
         /* Mobile responsive styles for screens 768px and smaller */
@@ -272,14 +297,30 @@
             h1 {
                 font-size: 36px; /* Reduced from 48px */
             }
+            
+            .subheading {
+                font-size: 18px; /* Smaller subheading on mobile */
+            }
 
             h2 {
                 font-size: 28px; /* Reduced from 36px */
             }
         }
+
+        /* ===== Quick overrides for existing inline hex styles in your HTML =====
+           These remap the inline light-mode hex colours to your dark tokens,
+           so you don't need to manually edit every inline style today. */
+        [style*="#718096"]{ color:var(--muted) !important; }
+        [style*="#2d3748"]{ color:var(--text) !important; }
+        [style*="#1a365d"]{ color:var(--heading) !important; }
+        [style*="#81a1c1"]{ color:var(--accent) !important; }
+        [style*="#f7fafc"]{ background:var(--surface) !important; }
+        [style*="#e2e8f0"]{ border-color:var(--border) !important; }
+        [style*="#ffffff"]{ background:var(--bg) !important; }
     </style>
 </head>
 <body>
+
     <!-- Main container for the entire page -->
     <div class="container">
         <!-- Left side content area -->
@@ -288,93 +329,124 @@
             <div id="home" class="section active">
                 <!-- Main heading with your name -->
                 <h1>Matthew Conway</h1>
+                <!-- Subheading -->
+                <div class="subheading">Theoretical Physics Student</div>
                 <!-- Introduction paragraph -->
                 <p class="blurb">
-                    Welcome! I'm a penultimate year Theoretical Physics student at Trinity College Dublin, passionate about computational physics, mathematical modeling, and applying physics principles to real-world challenges. With a strong foundation in quantum mechanics, statistical physics, and computational methods, I'm driven by curiosity and the pursuit of innovative solutions.
+                    bla bla bla
                 </p>
                 <!-- Additional introduction paragraph -->
                 <p class="blurb">
-                    Currently maintaining first-class honours, I've engaged in research projects ranging from Monte Carlo integration methods to agent-based ecological modeling. Beyond academics, I enjoy exploring the intersection of physics, engineering, and sustainability—whether through offshore wind energy design or understanding complex systems dynamics.
+                    bla bla bla
                 </p>
             </div>
 
             <!-- STUDIES SECTION - Hidden by default -->
             <div id="studies" class="section">
-                <!-- Section heading -->
-                <h2>Studies</h2>
+                <!-- Main heading with your name -->
+                <h1>Matthew Conway</h1>
+                <!-- Subheading -->
+                <div class="subheading">Theoretical Physics Student</div>
                 
-                <!-- Study item card for current degree -->
-                <div class="study-item">
-                    <h3>B.A. (Mod) Theoretical Physics - Trinity College Dublin</h3>
-                    <p class="date">September 2023 - May 2027 (Expected)</p>
-                    <p><strong>Grade:</strong> First-class honours maintained each year</p>
-                    <p style="margin-top: 10px;"><strong>Relevant Coursework:</strong> Quantum Mechanics, Statistical Physics, Classical Field Theory, Chaos & Complexity, Condensed Matter, Computational Physics, Linear Algebra, Multivariable Calculus, Statistics and Probability, Fourier Analysis, ODEs, Experimental Physics Laboratories</p>
-                    <p style="margin-top: 10px;"><strong>Extracurriculars:</strong> Active member of the Theoretical Physics Student Association, Mathematics Society, participated in Plancks international physics competition. Also involved in Cards Society (poker), Surf Society, and Jazz Society.</p>
-                </div>
+                <p class="blurb">
+                    bla bla bla
+                </p>
             </div>
 
             <!-- INTERESTS SECTION - Hidden by default -->
             <div id="interests" class="section">
-                <!-- Section heading -->
-                <h2>Interests</h2>
+                <!-- Main heading with your name -->
+                <h1>Matthew Conway</h1>
+                <!-- Subheading -->
+                <div class="subheading">Theoretical Physics Student</div>
                 
-                <!-- Academic interests -->
-                <div class="interest-item">
-                    <h3>Computational Physics & Mathematical Modeling</h3>
-                    <p>Fascinated by the power of computational methods to solve complex physics problems. Through research on Monte Carlo integration and agent-based modeling, I've developed a deep appreciation for how simulation and numerical methods can reveal insights into systems ranging from quantum mechanics to ecological dynamics.</p>
-                </div>
-
-                <!-- Research interests -->
-                <div class="interest-item">
-                    <h3>Renewable Energy & Sustainability Engineering</h3>
-                    <p>Passionate about applying physics and engineering principles to address climate challenges. My work with Trinity Floating Offshore Wind allowed me to contribute to novel platform designs that optimize power generation while maintaining structural integrity—combining theoretical knowledge with practical engineering innovation.</p>
-                </div>
-
-                <!-- Personal interests -->
-                <div class="interest-item">
-                    <h3>Personal Pursuits</h3>
-                    <p>Outside of academics, I enjoy playing guitar, surfing the Irish coast, and mountain biking. I also follow developments in geopolitics and international relations, finding connections between complex systems thinking in physics and global dynamics fascinating. These activities keep me grounded and provide fresh perspectives on problem-solving.</p>
-                </div>
+                <p class="blurb">
+                    bla bla bla
+                </p>
             </div>
 
             <!-- CV SECTION - Hidden by default -->
             <div id="cv" class="section">
-                <!-- Section heading -->
-                <h2>CV</h2>
+                <!-- Main heading with your name -->
+                <h1>Matthew Conway</h1>
+                <!-- Subheading -->
+                <div class="subheading">Theoretical Physics Student</div>
                 
+
+                <!-- Education subsection -->
+                <div class="cv-section">
+                    <h3>Education <span style="font-size: 14px; font-weight: normal; color: #718096; font-style: italic;">- Transcripts available upon request</span></h3>
+                    
+                    <div class="cv-item">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                            <h4>Trinity College Dublin</h4>
+                            <p style="color: #718096; font-size: 14px;">Dublin, Ireland</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px;">
+                            <p style="font-weight: 600;">B.A. (Mod) Theoretical Physics <span style="color: #718096; font-style: italic; font-weight: normal;">- Penultimate year</span></p>
+                            <p class="date" style="margin-bottom: 0;">May 2027</p>
+                        </div>
+                        
+                        <p style="margin-bottom: 8px;"><strong>Results:</strong> Grade average of 1st class honours maintained each year.</p>
+                        
+                        <p style="margin-bottom: 8px;"><strong>Coursework:</strong> Quantum Mechanics, Statistical Physics, Classical Field Theory, Chaos & Complexity, Condensed Matter, Computational Physics, Linear Algebra, Multivariable Calculus, Statistics and Probability, Fourier Analysis, ODEs, Experimental Physics Laboratories.</p>
+                        
+                        <p><strong>Extracurriculars:</strong> Engaged in many student led initiatives such as the Theoretical Physics Student Association, Mathematics Society, Plancks international physics competition, Cards Society (poker), Surf Society and Jazz Society.</p>
+                    </div>
+                </div>
+
                 <!-- Experience subsection -->
                 <div class="cv-section">
                     <h3>Experience</h3>
                     
                     <!-- Computational Physics Intern -->
                     <div class="cv-item">
-                        <h4>Computational Physics Intern - Hamilton Mathematics Institute, Trinity College Dublin</h4>
-                        <p class="date">May 2025 - June 2025</p>
-                        <p>Awarded stipend as part of a three-person research team to conduct a comprehensive review of Markov Chain Monte Carlo integration methods under Prof. Stefan Sint's supervision.</p>
-                        <ul style="margin-top: 10px; padding-left: 20px;">
-                            <li>Developed and benchmarked MCMC integration methods including importance sampling, Metropolis-Hastings, Gibbs sampling, and Hybrid MCMC + KDE approaches</li>
-                            <li>Quantified uncertainty and tested methods across various finite functions, expanding into multidimensional integrals to observe how uncertainty and computational burden scale with dimensions</li>
-                            <li>Documented integration schemes, simulated experiments, and results in a comprehensive <a href="https://drive.google.com/file/d/179GCpj2jolPjxRvibqczu_LUymO6WBry/view?usp=share_link" target="_blank" style="color: #81a1c1;">research paper</a></li>
+                        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                            <h4>Trinity College Dublin</h4>
+                            <p style="color: #718096; font-size: 14px;">Dublin, Ireland</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px;">
+                            <p style="font-style: italic; color: #718096;">Computational Physics Intern, Hamilton Mathematics Institute</p>
+                            <p class="date" style="margin-bottom: 0;">May 2025 – June 2025</p>
+                        </div>
+                        <ul style="margin-top: 10px; padding-left: 20px; list-style-type: square;">
+                            <li style="margin-bottom: 8px;">Awarded stipend for a three person research team to conduct a review of Markov Chain Monte Carlo integration methods under the supervision of Prof. Stefan Sint.</li>
+                            <li style="margin-bottom: 8px;">Developed and benchmarked MCMC integration methods (importance sampling, Metropolis-Hastings, Gibbs, Hybrid MCMC + KDE).</li>
+                            <li style="margin-bottom: 8px;">Quantified uncertainty and tested methods on a variety of finite functions, expanded this testing into multidimensional integrals observing how the uncertainty and computational burden scales with dimensions.</li>
+                            <li style="margin-bottom: 8px;">Recorded the various integration schemes developed, simulated experiments conducted and results found, then formulated our work into our research <a href="https://drive.google.com/file/d/179GCpj2jolPjxRvibqczu_LUymO6WBry/view?usp=share_link" target="_blank" style="color: #81a1c1;">paper</a>.</li>
                         </ul>
                     </div>
 
                     <!-- Recruitment Consultant -->
                     <div class="cv-item">
-                        <h4>Recruitment Consultant - Your World Healthcare</h4>
-                        <p class="date">November 2022 - June 2023</p>
-                        <p>Gap year position to help finance university studies, managing healthcare recruitment for hospitals, ID centers, and CAMHS facilities.</p>
-                        <ul style="margin-top: 10px; padding-left: 20px;">
-                            <li>Managed volatile client demand by forecasting shift requirements and building contingency plans to ensure 100% coverage, minimizing revenue loss through strategic recruitment area overlap</li>
-                            <li>Launched and scaled the first Cork-based team from 0 to 12 staff within 3 months, secured 3 new healthcare provider clients, and generated consistent weekly placements</li>
-                            <li>Expanded operations beyond Dublin office scope, creating new revenue streams in previously neglected regions</li>
+                        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                            <h4>Your World Healthcare <span style="font-weight: normal; font-style: italic; font-size: 14px; color: #718096;">- Gap year to help finance university studies.</span></h4>
+                            <p style="color: #718096; font-size: 14px;">Dublin, Ireland</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px;">
+                            <p style="font-style: italic; color: #718096;">Recruitment Consultant</p>
+                            <p class="date" style="margin-bottom: 0;">November 2022 – June 2023</p>
+                        </div>
+                        <ul style="margin-top: 10px; padding-left: 20px; list-style-type: square;">
+                            <li style="margin-bottom: 8px;">Managed highly volatile client demand (hospitals, ID centers, CAMHS, etc.) by forecasting shift requirements, recruiting staff in targeted regions, and building contingency plans to ensure 100% coverage; minimised revenue loss by overlapping recruitment areas to hedge against demand uncertainty.</li>
+                            <li style="margin-bottom: 8px;">Launched and scaled the first Cork-based team from 0 to 12 staff within 3 months, brought on 3 new healthcare providers as clients, and generated consistent weekly placements for our staff as a result.</li>
+                            <li style="margin-bottom: 8px;">Expanded operations beyond Dublin office scope and generated new revenue streams in places which had previously been neglected.</li>
                         </ul>
                     </div>
 
                     <!-- Private Tutor -->
                     <div class="cv-item">
-                        <h4>Private Maths Tutor - Self-Employed</h4>
-                        <p class="date">September 2022 - Ongoing</p>
-                        <p>Delivered tailored mathematics tutoring to over 30 secondary students, with consistent grade improvements reflected across the cohort.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                            <h4>Self-Employed</h4>
+                            <p style="color: #718096; font-size: 14px;">Dublin, Ireland</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px;">
+                            <p style="font-style: italic; color: #718096;">Private Maths Tutor</p>
+                            <p class="date" style="margin-bottom: 0;">September 2022 – Ongoing</p>
+                        </div>
+                        <ul style="margin-top: 10px; padding-left: 20px; list-style-type: square;">
+                            <li style="margin-bottom: 8px;">Delivered tailored Maths tutoring to over 30 secondary students, with consistent increases in student grades reflected.</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -383,41 +455,66 @@
                     <h3>Projects</h3>
                     
                     <!-- Trinity Floating Offshore Wind -->
-                    <div class="project-item">
-                        <h3>Trinity Floating Offshore Wind</h3>
-                        <p class="role">Structural Design Lead | September 2024 - Ongoing</p>
-                        <ul>
-                            <li>Won 1st place in power generation at the Floating Wind Challenge, competing against teams from University of Tokyo, National University of Singapore, École des Ponts, Nova College NL, and others</li>
-                            <li>Developed novel floating platform design featuring a retractable keel mounted to a Tri-Floater base via custom bearing design, effectively decoupling turbine from roll, yaw, and pitch movements</li>
-                            <li>Validated structural integrity and optimized power generation through testing at LIR National Ocean Test Facility, Cork. Full project design and development proposal available in our <a href="https://drive.google.com/file/d/1m62OI6be7ngSfS3WAMtcEV6Wfb7k-ewl/view?usp=share_link" target="_blank" style="color: #81a1c1;">detailed report</a></li>
+                    <div class="cv-item">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                            <h4>Trinity Floating Offshore Wind</h4>
+                            <p style="color: #718096; font-size: 14px;">Dublin, Ireland</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px;">
+                            <p style="font-style: italic; color: #718096;">Structural Design Lead</p>
+                            <p class="date" style="margin-bottom: 0;">September 2024 – Ongoing</p>
+                        </div>
+                        <ul style="margin-top: 10px; padding-left: 20px; list-style-type: square;">
+                            <li style="margin-bottom: 8px;">Won 1st place in power generation as part of Floating Wind Challenge, an intervarsity competition comprised of teams from University of Tokyo, National University of Singapore, Ecole de Ponts, Nova College, NL and more.</li>
+                            <li style="margin-bottom: 8px;">Developed novel floating platform design consisting of a retractable keel mounted to a Tri-Floater base via an in-house bearing design, decoupling turbine from roll, yaw, and pitch.</li>
+                            <li style="margin-bottom: 8px;">Validated structural integrity and optimised power generation efficiency through testing at LIR National Ocean Test Facility, Cork. Our project design and large scale development proposal for offshore wind in Ireland can be found in this <a href="https://drive.google.com/file/d/1m62OI6be7ngSfS3WAMtcEV6Wfb7k-ewl/view?usp=share_link" target="_blank" style="color: #81a1c1;">report</a>.</li>
                         </ul>
                     </div>
 
                     <!-- Agent-Based Model -->
-                    <div class="project-item">
-                        <h3>Agent-Based Model of Bee/Flora Dynamics</h3>
-                        <p class="role">Student Led Research Project | January 2025 - May 2025</p>
-                        <ul>
-                            <li>Simulated population dynamics of pollinators and flora under various exogenous shocks representing different urbanization scenarios</li>
-                            <li>Observed self-reinforcing cycles between populations, with varied distribution of outcomes highly dependent on initial conditions and urbanization type (urban sprawl, green spaces, large-scale concrete developments)</li>
-                            <li>Consulted with pollinator and agent-based modeling specialists to form inferences regarding urban planning policy effects on ecosystems. Final findings documented in our <a href="https://drive.google.com/file/d/1VWdwEXWbJp-vMxH_CRAxjpLG2LeqVXms/view?usp=share_link" target="_blank" style="color: #81a1c1;">research report</a></li>
+                    <div class="cv-item">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                            <h4>Agent-Based Model of Bee/Flora Dynamics</h4>
+                            <p style="color: #718096; font-size: 14px;">Dublin, Ireland</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px;">
+                            <p style="font-style: italic; color: #718096;">Student Led Research Project</p>
+                            <p class="date" style="margin-bottom: 0;">January 2025 – May 2025</p>
+                        </div>
+                        <ul style="margin-top: 10px; padding-left: 20px; list-style-type: square;">
+                            <li style="margin-bottom: 8px;">Simulated population dynamics of pollinators and flora under a variety of exogenous shocks representing different types of urbanisation.</li>
+                            <li style="margin-bottom: 8px;">Observed self-reinforcing cycles between both populations, varied distribution of outcomes for pollinator and plant populations which highly depended on initial conditions and particular form of urbanisation (urban sprawl, green spaces, large scale concrete developments).</li>
+                            <li style="margin-bottom: 8px;">Conferred with pollinator and agent based modelling specialists in order to form our inferences and suggestions in relation to urban planning policy and its effects on our ecosystem. Our final <a href="https://drive.google.com/file/d/1VWdwEXWbJp-vMxH_CRAxjpLG2LeqVXms/view?usp=share_link" target="_blank" style="color: #81a1c1;">report</a> outlined our research, modelling methods, and conclusions.</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Skills subsection -->
+                <!-- Skills and Interests subsection -->
                 <div class="cv-section">
-                    <h3>Skills</h3>
-                    <p><strong>Programming:</strong> Python, C++, HTML, CSS, Swift, LaTeX, SolidWorks</p>
-                    <p><strong>Technical:</strong> Monte Carlo methods, computational modeling, statistical analysis, CAD design, experimental physics techniques</p>
-                    <p><strong>Languages:</strong> English (native), Irish (conversational)</p>
+                    <p style="margin-bottom: 8px;"><strong>Programming:</strong> Python, C++, HTML, CSS, Swift, LaTeX, SolidWorks</p>
+                    <p><strong>Interests:</strong> Guitar, Surfing, Mountain Biking, Geopolitics Developments</p>
+                </div>
+
+                <!-- References subsection -->
+                <div class="cv-section">
+                    <h3>References</h3>
+                    <p style="margin-bottom: 10px;">
+                        <strong>Dr. Chaolun Wu</strong> <span style="font-size: 14px; color: #718096;">- Teaching Fellow, School of Mathematics, Trinity College Dublin.</span>
+                        <span style="float: right;"><a href="mailto:WUCH@tcd.ie" style="color: #81a1c1;">WUCH@tcd.ie</a></span>
+                    </p>
+                    <p style="clear: both;">
+                        <strong>Dr. Craig Meskell</strong> <span style="font-size: 14px; color: #718096;">- Associate Professor, Department of Mechanical and Manufacturing Engineering, Trinity College Dublin.</span>
+                        <span style="float: right;"><a href="mailto:cmeskell@tcd.ie" style="color: #81a1c1;">cmeskell@tcd.ie</a></span>
+                    </p>
                 </div>
             </div>
 
             <!-- CONTACT SECTION - Hidden by default -->
             <div id="contact" class="section">
                 <!-- Section heading -->
-                <h2>Contact</h2>
+                <h1>Matthew Conway</h1>
+                <!-- Subheading -->
+                <div class="subheading">Theoretical Physics Student</div>
                 
                 <!-- Contact information container -->
                 <div class="contact-info">
