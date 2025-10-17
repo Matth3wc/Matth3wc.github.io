@@ -104,6 +104,24 @@
             font-weight: 500; /* Slightly bolder for active state */
         }
 
+        .corner-logo {
+        position: fixed;
+        left: 20px;
+        bottom: 20px;
+        z-index: 999;
+        }
+        .corner-logo img {
+        width: 60px;
+        height: auto;
+        opacity: 0.95;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .corner-logo:hover img {
+        transform: scale(1.05);
+        opacity: 1;
+        }
+
+
         /* Section container - hidden by default */
         .section {
             display: none; /* Hide all sections initially */
@@ -598,6 +616,11 @@
                 <!-- Navigation link to Contact section -->
                 <a href="#contact" class="nav-link" onclick="showSection('contact')">Contact</a>
             </nav>
+
+            <a class="corner-logo" href="#home" aria-label="Home">
+                <img src="assets/eye-logo.png" alt="Logo">
+            </a>
+              
         </div>
     </div>
 
