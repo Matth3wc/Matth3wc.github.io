@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="54dHc3FSOlV8Tdmx_SoHkQZiJvRHbdxlOaQchMuLhHg" />
         <!-- SEO meta tags -->
     <meta name="description" content="Matthew Conway - Theoretical Physics student at Trinity College Dublin. This website discusses my education, experience and interests. Here you can find some of my previous work, .">
-    <meta name="keywords" content="Matthew Conway, Mathew Conway, Matthew Conwa, Matthew Conay, Matthe Conway, Mattew Conway, Matthew Coway, Matthew Coay, Theoretical Physics, Computational Physics, Trinity College Dublin, Research Portfolio, AI Projects, Python Developer, MCMC Methods, Quantum Mechanics, Physics Research, Coding Portfolio, Trading Algorithms">
+    <meta name="keywords" content="Matthew Conway, Mathew Conway, Matthew Conwa, Matthew Conay, Matthe Conway, Mattew Conway, Matthew Coway, Matthew Coay, Theoretical Physics, Computational Physics, Trinity College Dublin, Research Portfolio, AI Projects, Python Developer, MCMC Methods, Quantum Mechanics, Physics Research, Math, Maths, Mathematics, STEM, Energy production Coding Portfolio, Trading Algorithms">
     <meta name="author" content="Matthew Conway">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://Matth3wc.github.io/">
@@ -61,7 +61,7 @@
 
         /* Right sidebar navigation styling */
         .sidebar {
-            width: 280px; /* Fixed width for sidebar */
+            width: 310px; /* Fixed width for sidebar */
             background: var(--bg); /* Match content */
             color: var(--text); /* Text color */
             position: fixed; /* Stay fixed on screen */
@@ -87,7 +87,7 @@
             padding: 0; /* No padding */
             margin-bottom: 12px; /* Space between links */
             transition: all 0.2s ease; /* Smooth transition for hover effects */
-            font-size: 16px; /* Text size */
+            font-size: 24px; /* Text size */
             text-align: left; /* Left align text */
             font-weight: 400; /* Normal weight */
             display: block; /* Make full width clickable */
@@ -106,18 +106,19 @@
 
         .corner-logo {
         position: fixed;
-        left: 20px;
-        bottom: 20px;
+        justify-content: center;
+        bottom: 100px;
         z-index: 999;
         }
         .corner-logo img {
-        width: 60px;
+        width: 240px;
         height: auto;
+        padding: 0px;
         opacity: 0.95;
         transition: transform 0.2s ease, opacity 0.2s ease;
         }
         .corner-logo:hover img {
-        transform: scale(1.05);
+        transform: scale(7.75);
         opacity: 1;
         }
 
@@ -180,6 +181,7 @@
         .blurb {
             font-size: 20px; /* Slightly larger than body text */
             color: var(--muted); /* Secondary text color */
+            width: 900px;          /* hard cap */
             margin-bottom: 30px; /* Space below paragraph */
             line-height: 1.8; /* Extra spacing between lines */
         }
@@ -198,6 +200,29 @@
             color: var(--text); /* Text color */
             margin-bottom: 10px; /* Space below heading */
         }
+
+        .modules-grid{
+        display: grid;
+        grid-template-columns: repeat(2, minmax(320px, 1fr));
+        gap: 24px;
+        align-items: start;
+        }
+        .module-year{
+        /* optional styling; remove if you want plain */
+        border-left: 4px solid var(--accent);
+        padding: 16px 20px;
+        }
+        .module-year h3{ margin: 0 0 8px 0; }
+        .module-year ul{ margin-left: 18px; }
+
+        /* Make it single-column on narrow screens */
+        @media (max-width: 900px){
+        .modules-grid{ grid-template-columns: 1fr; }
+        }
+
+        /* If you want a block to span both columns (e.g., Year 1) */
+        .span-2{ grid-column: 1 / -1; }
+
 
         /* CV section container */
         .cv-section {
@@ -364,12 +389,14 @@
                     <br/>
                     <br/>
                     <br/>
-                    I am a third year student of Theoretical Physics in Trinity College Dublin. I am interested in energy production and trading. I like to play poker, guitar and go surfing.
+                    <br/>
+                    Currently pursuing a B.A. in Theoretical Physics at Trinity College Dublin.
+                    I love learning about how things work, which has led me to work on several projects ranging from applied engineering to computational modelling.
+                    I’m particularly interested in energy production, grid management, trading strategies, and space technology.
+                    <br/>
+                    Outside of academics, I enjoy playing poker, guitar, and surfing.
                 </p>
-                <!-- Additional introduction paragraph -->
-                <p class="blurb">
-                    bla bla bla
-                </p>
+                
             </div>
 
             <!-- STUDIES SECTION - Hidden by default -->
@@ -379,9 +406,52 @@
                 <!-- Subheading -->
                 <div class="subheading">Student of Theoretical Physics <br/> at Trinity College Dublin</div>
                 
-                <p class="blurb">
-                    bla bla bla
-                </p>
+                <div class="modules-grid">
+
+                    <!-- YEAR 3 -->
+                    <div class="module-year">
+                      <h3>Year 3 (Junior Sophister)</h3>
+                      <ul>
+                        <li>Practical in Theoretical Physics (year-long)</li>
+                        <li>Classical Field Theory</li>
+                        <li>Quantum Mechanics I &amp; II</li>
+                        <li>Statistical Physics I &amp; II</li>
+                        <li>Classical Electrodynamics</li>
+                        <li>Condensed Matter I</li>
+                        <li>Atomic Physics &amp; Statistical Thermodynamics</li>
+                      </ul>
+                    </div>
+                  
+                    <!-- YEAR 2 -->
+                    <div class="module-year">
+                      <h3>Year 2 (Senior Fresh)</h3>
+                      <ul>
+                        <li>Advanced Classical Mechanics I &amp; II</li>
+                        <li>Equations of Mathematical Physics I</li>
+                        <li>Introduction to Complex Analysis</li>
+                        <li>Classical Physics for Theoretical Physics</li>
+                        <li>Modern Physics for Theoretical Physics</li>
+                        <li>Introduction to Probability</li>
+                        <li>Introduction to Statistics</li>
+                        <li>Systems - The Science of Everything</li>
+                      </ul>
+                    </div>
+                  
+                    <!-- YEAR 1 (spans both columns; remove class="span-2" if you want 3-up) -->
+                    <div class="module-year span-2">
+                      <h3>Year 1 (Junior Fresh)</h3>
+                      <ul>
+                        <li>Linear Algebra</li>
+                        <li>Mechanics</li>
+                        <li>Single-Variable Calculus</li>
+                        <li>Advanced Calculus</li>
+                        <li>Techniques in Theoretical Physics</li>
+                        <li>Physics for Theoretical Physics (Sem 1 &amp; Sem 2)</li>
+                      </ul>
+                    </div>
+                  
+                  </div>
+                  
             </div>
 
             <!-- INTERESTS SECTION - Hidden by default -->
@@ -582,22 +652,8 @@
 
                 <!-- Closing message -->
                 <p style="margin-top: 40px; color: #718096;">
-                    Feel free to reach out if you'd like to discuss research opportunities, collaborative projects, or just chat about physics, renewable energy, or computational methods. I'm always open to connecting with fellow researchers and enthusiasts!
+                    Feel free to reach out if you'd like to discuss research opportunities, collaborative projects, or just to chat about anything interesting. I'm always open to connecting with all types of individuals!
                 </p>
-
-                <!-- References section -->
-                <div style="margin-top: 40px;">
-                    <h3 style="color: #2d3748; margin-bottom: 15px;">References</h3>
-                    <p style="margin-bottom: 10px;">
-                        <strong>Dr. Chaolun Wu</strong><br>
-                        <span style="color: #718096; font-size: 14px;">Teaching Fellow, School of Mathematics, Trinity College Dublin</span><br>
-                        <a href="mailto:WUCH@tcd.ie" style="color: #81a1c1;">WUCH@tcd.ie</a>
-                    </p>
-                    <p>
-                        <strong>Dr. Craig Meskell</strong><br>
-                        <span style="color: #718096; font-size: 14px;">Associate Professor, Department of Mechanical and Manufacturing Engineering, Trinity College Dublin</span><br>
-                        <a href="mailto:cmeskell@tcd.ie" style="color: #81a1c1;">cmeskell@tcd.ie</a>
-                    </p>
                 </div>
             </div>
         </div>
