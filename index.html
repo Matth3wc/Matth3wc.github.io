@@ -344,7 +344,7 @@
                 position: relative;
                 width: 100%;
                 height: auto;
-                padding: 2vh 4vw;
+                padding: 20px;
                 top: 0;
                 border-left: none;
                 border-bottom: 1px solid var(--border);
@@ -355,38 +355,101 @@
                 flex-direction: row;
                 flex-wrap: wrap;
                 gap: 10px;
+                justify-content: center;
+            }
+
+            .sidebar a {
+                font-size: 16px;
+                margin-bottom: 0;
             }
 
             /* Reduce content padding on mobile */
             .content {
-                padding: 5vh 5vw;
+                padding: 30px 20px;
                 margin-right: 0;
+                width: 100%;
+                overflow-x: hidden;
             }
 
-            /* Make blurb full width on mobile */
+            /* Force all text to fit within screen */
             .blurb {
                 max-width: 100%;
+                width: 100%;
+                font-size: 16px;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             /* Make contact info full width on mobile */
             .contact-info {
                 max-width: 100%;
+                width: 100%;
             }
 
-            /* Adjust corner logo for mobile */
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+                font-size: 14px;
+            }
+
+            .contact-item strong {
+                min-width: auto;
+            }
+
+            /* Hide corner logo on mobile to prevent overlap */
             .corner-logo {
-                position: relative;
-                bottom: auto;
-                margin-top: 20px;
-                text-align: center;
+                display: none;
             }
 
-            .corner-logo img {
-                width: clamp(100px, 30vw, 180px);
+            /* Make modules grid single column on mobile */
+            .modules-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
             }
 
-            .corner-logo:hover img {
-                transform: scale(1.1);
+            .module-year {
+                padding: 12px 15px;
+            }
+
+            .module-year h3 {
+                font-size: 16px;
+            }
+
+            .module-year ul {
+                font-size: 14px;
+            }
+
+            /* Adjust CV items for mobile */
+            .cv-item {
+                padding-left: 12px;
+            }
+
+            .cv-item h4 {
+                font-size: 16px;
+            }
+
+            /* Make CV flex items stack on mobile */
+            .cv-item div[style*="display: flex"] {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+            }
+
+            .cv-item p {
+                font-size: 14px;
+                margin-top: 5px;
+            }
+
+            /* Headings on mobile */
+            h1 {
+                font-size: 32px;
+            }
+
+            .subheading {
+                font-size: 16px;
+            }
+
+            h2 {
+                font-size: 24px;
             }
         }
 
