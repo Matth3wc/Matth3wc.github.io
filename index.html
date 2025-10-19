@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
@@ -33,118 +32,117 @@
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box; /* Include padding and border in element's total width/height */
+            box-sizing: border-box;
         }
 
         /* Base body styling */
         body {
-            /* Modern system font stack for cross-platform consistency */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6; /* Comfortable line spacing for readability */
-            color: var(--text); /* Text */
-            background: var(--bg); /* Background */
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
         }
 
         /* Main container using flexbox layout */
         .container {
-            display: flex; /* Enable flexbox */
-            min-height: 100vh; /* Minimum height of viewport */
+            display: flex;
+            min-height: 100vh;
         }
 
-        /* Left content area styling */
+        /* Left content area styling - RESPONSIVE */
         .content {
-            flex: 1; /* Take up remaining space after sidebar */
-            padding: 80px 60px; /* Top/bottom and left/right padding */
-            margin-right: 280px; /* Make space for fixed sidebar */
-            background: var(--bg); /* Match page background */
+            flex: 1;
+            padding: clamp(40px, 8vh, 80px) clamp(30px, 5vw, 60px);
+            margin-right: clamp(250px, 20vw, 310px);
+            background: var(--bg);
         }
 
-        /* Right sidebar navigation styling */
+        /* Right sidebar navigation styling - RESPONSIVE */
         .sidebar {
-            width: 310px; /* Fixed width for sidebar */
-            background: var(--bg); /* Match content */
-            color: var(--text); /* Text color */
-            position: fixed; /* Stay fixed on screen */
-            right: 0; /* Align to right edge */
-            top: 80px; /* Align with content top padding */
-            bottom: 80px; /* Align with content top padding */
-            height: 80vh; /* Full viewport height */
-            padding: 0 40px; /* Left/right padding only */
-            border-left: 1px solid var(--border); /* Separator line */
+            width: clamp(250px, 20vw, 310px);
+            background: var(--bg);
+            color: var(--text);
+            position: fixed;
+            right: 0;
+            top: clamp(40px, 8vh, 80px);
+            bottom: clamp(40px, 8vh, 80px);
+            height: 80vh;
+            padding: 0 clamp(20px, 3vw, 40px);
+            border-left: 1px solid var(--border);
         }
 
         /* Navigation container inside sidebar */
         .sidebar nav {
-            display: flex; /* Enable flexbox */
-            flex-direction: column; /* Stack links vertically */
-            gap: 0; /* No gap, use margin on links instead */
+            display: flex;
+            flex-direction: column;
+            gap: 0;
         }
 
-        /* Navigation link styling */
+        /* Navigation link styling - RESPONSIVE */
         .sidebar a {
-            color: var(--muted); /* Secondary text */
-            text-decoration: none; /* Remove underline */
-            padding: 0; /* No padding */
-            margin-bottom: 12px; /* Space between links */
-            transition: all 0.2s ease; /* Smooth transition for hover effects */
-            font-size: 24px; /* Text size */
-            text-align: left; /* Left align text */
-            font-weight: 400; /* Normal weight */
-            display: block; /* Make full width clickable */
+            color: var(--muted);
+            text-decoration: none;
+            padding: 0;
+            margin-bottom: clamp(8px, 1.5vh, 12px);
+            transition: all 0.2s ease;
+            font-size: clamp(18px, 2vw, 24px);
+            text-align: left;
+            font-weight: 400;
+            display: block;
         }
 
         /* Navigation link hover effect */
         .sidebar a:hover {
-            color: var(--text); /* Brighter on hover */
+            color: var(--text);
         }
 
         /* Active navigation link styling */
         .sidebar a.active {
-            color: var(--accent); /* Accent for active page */
-            font-weight: 500; /* Slightly bolder for active state */
+            color: var(--accent);
+            font-weight: 500;
         }
 
+        /* Corner logo - RESPONSIVE */
         .corner-logo {
-        position: fixed;
-        justify-content: center;
-        bottom: 100px;
-        z-index: 999;
+            position: fixed;
+            justify-content: center;
+            bottom: clamp(50px, 10vh, 100px);
+            z-index: 999;
         }
+        
         .corner-logo img {
-        width: 240px;
-        height: auto;
-        padding: 0px;
-        opacity: 0.95;
-        transition: transform 0.2s ease, opacity 0.2s ease;
+            width: clamp(150px, 15vw, 240px);
+            height: auto;
+            padding: 0px;
+            opacity: 0.95;
+            transition: transform 0.2s ease, opacity 0.2s ease;
         }
+        
         .corner-logo:hover img {
-        transform: scale(7.75);
-        opacity: 1;
+            transform: scale(7.75);
+            opacity: 1;
         }
-
 
         /* Section container - hidden by default */
         .section {
-            display: none; /* Hide all sections initially */
-            animation: fadeIn 0.5s ease; /* Fade in animation when displayed */
+            display: none;
+            animation: fadeIn 0.5s ease;
         }
 
         /* Active section - visible */
         .section.active {
-            display: block; /* Show active section */
+            display: block;
         }
 
         /* Fade in animation definition */
-        /* No-bounce fade: opacity only */
         @keyframes fadeIn {
             from { opacity: 1; }
             to   { opacity: 1; }
         }
 
-        
         /* Ensure nothing else sneaks in */
         .section { 
-            animation: fadeIn 300ms linear;   /* or keep your 0.5s */
+            animation: fadeIn 300ms linear;
             transform: none !important;
         }
 
@@ -153,163 +151,174 @@
             .section { animation: none; }
         }
 
-        /* Main heading (H1) styling */
+        /* Main heading (H1) styling - RESPONSIVE */
         h1 {
-            font-size: 52px; /* Large text size */
-            margin-bottom: 10px; /* Reduced space below heading */
-            color: var(--accent); /* Heading color */
+            font-size: clamp(36px, 5vw, 52px);
+            margin-bottom: clamp(8px, 1vh, 10px);
+            color: var(--accent);
         }
 
-        /* Subheading styling */
+        /* Subheading styling - RESPONSIVE */
         .subheading {
-            font-size: 24px; /* Slightly smaller than main heading */
-            color: var(--muted); /* Soft medium gray color */
-            margin-bottom: 20px; /* Space below subheading */
-            font-weight: 400; /* Normal weight */
+            font-size: clamp(18px, 2vw, 24px);
+            color: var(--muted);
+            margin-bottom: clamp(15px, 2vh, 20px);
+            font-weight: 400;
         }
 
-        /* Section heading (H2) styling */
+        /* Section heading (H2) styling - RESPONSIVE */
         h2 {
-            font-size: 36px; /* Medium-large text size */
-            margin-bottom: 30px; /* Space below heading */
-            color: var(--text); /* Heading text */
-            border-bottom: 3px solid var(--accent); /* Accent underline */
-            padding-bottom: 10px; /* Space between text and underline */
+            font-size: clamp(28px, 3.5vw, 36px);
+            margin-bottom: clamp(20px, 3vh, 30px);
+            color: var(--text);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: clamp(8px, 1vh, 10px);
         }
 
-        /* Blurb/introduction paragraph styling */
+        /* Blurb/introduction paragraph styling - RESPONSIVE */
         .blurb {
-            font-size: 20px; /* Slightly larger than body text */
-            color: var(--muted); /* Secondary text color */
-            width: 900px;          /* hard cap */
-            margin-bottom: 30px; /* Space below paragraph */
-            line-height: 1.8; /* Extra spacing between lines */
+            font-size: clamp(16px, 1.5vw, 20px);
+            color: var(--muted);
+            max-width: min(900px, 90vw);
+            margin-bottom: clamp(20px, 3vh, 30px);
+            line-height: 1.8;
         }
 
-        /* Study and interest item card styling */
+        /* Study and interest item card styling - RESPONSIVE */
         .study-item, .interest-item {
-            margin-bottom: 30px; /* Space below each item */
-            padding: 20px; /* Internal padding */
-            background: var(--surface); /* Card background */
-            border-radius: 8px; /* Rounded corners */
-            border-left: 4px solid var(--accent); /* Accent border on left */
+            margin-bottom: clamp(20px, 3vh, 30px);
+            padding: clamp(15px, 2vw, 20px);
+            background: var(--surface);
+            border-radius: clamp(6px, 0.5vw, 8px);
+            border-left: 4px solid var(--accent);
         }
 
         /* Headings inside study and interest items */
         .study-item h3, .interest-item h3 {
-            color: var(--text); /* Text color */
-            margin-bottom: 10px; /* Space below heading */
+            color: var(--text);
+            margin-bottom: clamp(8px, 1vh, 10px);
         }
 
-        
-
-
+        /* Modules grid */
         .modules-grid{
-        display: grid;
-        grid-template-columns: repeat(2, minmax(320px, 1fr));
-        gap: 24px;
-        align-items: start;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(320px, 1fr));
+            gap: clamp(16px, 2.5vw, 24px);
+            align-items: start;
         }
+        
         .module-year{
-        /* optional styling; remove if you want plain */
-        border-left: 4px solid var(--accent);
-        padding: 16px 20px;
+            border-left: 4px solid var(--accent);
+            padding: clamp(12px, 1.5vw, 16px) clamp(15px, 2vw, 20px);
         }
-        .module-year h3{ margin: 0 0 8px 0; }
-        .module-year ul{ margin-left: 18px; }
+        
+        .module-year h3{ 
+            margin: 0 0 8px 0; 
+            font-size: clamp(16px, 1.8vw, 20px);
+        }
+        
+        .module-year ul{ 
+            margin-left: 18px; 
+            font-size: clamp(14px, 1.4vw, 16px);
+        }
 
         /* Make it single-column on narrow screens */
         @media (max-width: 900px){
-        .modules-grid{ grid-template-columns: 1fr; }
+            .modules-grid{ grid-template-columns: 1fr; }
         }
 
         /* If you want a block to span both columns (e.g., Year 1) */
         .span-2{ grid-column: 1 / -1; }
 
-
-        /* CV section container */
+        /* CV section container - RESPONSIVE */
         .cv-section {
-            margin-bottom: 40px; /* Space below section */
+            margin-bottom: clamp(30px, 4vh, 40px);
         }
 
-        /* CV section headings */
+        /* CV section headings - RESPONSIVE */
         .cv-section h3 {
-            color: var(--text); /* Text color */
-            margin-bottom: 15px; /* Space below heading */
-            font-size: 24px; /* Text size */
+            color: var(--text);
+            margin-bottom: clamp(12px, 1.5vh, 15px);
+            font-size: clamp(20px, 2.2vw, 24px);
         }
 
-        /* Individual CV item styling */
+        /* Individual CV item styling - RESPONSIVE */
         .cv-item {
-            margin-bottom: 20px; /* Space below item */
-            padding-left: 20px; /* Left padding for indentation */
-            border-left: 2px solid var(--accent); /* Accent border */
+            margin-bottom: clamp(15px, 2vh, 20px);
+            padding-left: clamp(15px, 2vw, 20px);
+            border-left: 2px solid var(--accent);
         }
 
-        /* CV item heading */
+        /* CV item heading - RESPONSIVE */
         .cv-item h4 {
-            color: var(--text); /* Text color */
-            margin-bottom: 5px; /* Small space below */
+            color: var(--text);
+            margin-bottom: 5px;
+            font-size: clamp(16px, 1.6vw, 18px);
         }
 
         /* Date text in CV items */
         .cv-item .date {
-            color: var(--accent); /* Accent color for dates */
-            font-weight: bold; /* Bold text */
-            margin-bottom: 5px; /* Small space below */
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: clamp(13px, 1.3vw, 14px);
         }
 
-        /* Contact information container */
+        /* Contact information container - RESPONSIVE */
         .contact-info {
-            display: flex; /* Enable flexbox */
-            flex-direction: column; /* Stack items vertically */
-            gap: 20px; /* Space between contact items */
+            display: flex;
+            flex-direction: column;
+            gap: clamp(15px, 2vh, 20px);
+            max-width: min(800px, 90vw);
         }
 
-        /* Individual contact item styling */
+        /* Individual contact item styling - RESPONSIVE */
         .contact-item {
-            display: flex; /* Enable flexbox */
-            align-items: center; /* Center items vertically */
-            gap: 15px; /* Space between label and value */
-            padding: 15px; /* Internal padding */
-            border-radius: 8px; /* Rounded corners */
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.5vw, 15px);
+            padding: clamp(10px, 1.5vw, 15px);
+            border-radius: clamp(6px, 0.5vw, 8px);
+            font-size: clamp(14px, 1.4vw, 16px);
         }
 
         /* Contact item labels */
         .contact-item strong {
-            color: var(--text); /* Text color */
-            min-width: 100px; /* Minimum width for alignment */
+            color: var(--text);
+            min-width: clamp(80px, 10vw, 100px);
         }
 
         /* Contact item links */
         .contact-item a {
-            color: var(--accent); /* Link color */
-            text-decoration: none; /* Remove underline */
+            color: var(--accent);
+            text-decoration: none;
         }
 
         /* Contact item link hover effect */
         .contact-item a:hover {
-            text-decoration: underline; /* Add underline on hover */
+            text-decoration: underline;
         }
 
-        /* Project item styling */
+        /* Project item styling - RESPONSIVE */
         .project-item {
-            margin-bottom: 30px;
-            padding: 20px;
+            margin-bottom: clamp(20px, 3vh, 30px);
+            padding: clamp(15px, 2vw, 20px);
             background: var(--surface);
-            border-radius: 8px;
+            border-radius: clamp(6px, 0.5vw, 8px);
             border-left: 4px solid var(--accent);
         }
 
         .project-item h3 {
             color: var(--text);
             margin-bottom: 5px;
+            font-size: clamp(16px, 1.8vw, 20px);
         }
 
         .project-item .role {
             color: var(--accent);
             font-style: italic;
             margin-bottom: 10px;
+            font-size: clamp(14px, 1.4vw, 16px);
         }
 
         .project-item ul {
@@ -320,53 +329,68 @@
         .project-item li {
             margin-bottom: 8px;
             color: var(--text);
+            font-size: clamp(14px, 1.4vw, 16px);
         }
 
         /* Mobile responsive styles for screens 768px and smaller */
         @media (max-width: 768px) {
             /* Change container to vertical stack on mobile */
             .container {
-                flex-direction: column; /* Stack content and sidebar vertically */
+                flex-direction: column;
             }
 
             /* Adjust sidebar for mobile */
             .sidebar {
-                position: relative; /* Remove fixed positioning */
-                width: 100%; /* Full width */
-                height: auto; /* Auto height */
-                padding: 20px; /* Reduced padding */
-                top: 0; /* Reset top position */
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 2vh 4vw;
+                top: 0;
+                border-left: none;
+                border-bottom: 1px solid var(--border);
             }
 
             /* Horizontal navigation on mobile */
             .sidebar nav {
-                flex-direction: row; /* Stack links horizontally */
-                flex-wrap: wrap; /* Allow wrapping to next line */
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px;
             }
 
             /* Reduce content padding on mobile */
             .content {
-                padding: 40px 20px; /* Reduced padding */
-                margin-right: 0; /* Remove margin */
+                padding: 5vh 5vw;
+                margin-right: 0;
             }
 
-            /* Smaller heading sizes on mobile */
-            h1 {
-                font-size: 36px; /* Reduced from 48px */
-            }
-            
-            .subheading {
-                font-size: 18px; /* Smaller subheading on mobile */
+            /* Make blurb full width on mobile */
+            .blurb {
+                max-width: 100%;
             }
 
-            h2 {
-                font-size: 28px; /* Reduced from 36px */
+            /* Make contact info full width on mobile */
+            .contact-info {
+                max-width: 100%;
+            }
+
+            /* Adjust corner logo for mobile */
+            .corner-logo {
+                position: relative;
+                bottom: auto;
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            .corner-logo img {
+                width: clamp(100px, 30vw, 180px);
+            }
+
+            .corner-logo:hover img {
+                transform: scale(1.1);
             }
         }
 
-        /* ===== Quick overrides for existing inline hex styles in your HTML =====
-           These remap the inline light-mode hex colours to your dark tokens,
-           so you don't need to manually edit every inline style today. */
+        /* ===== Quick overrides for existing inline hex styles in your HTML ===== */
         [style*="#718096"]{ color:var(--muted) !important; }
         [style*="#2d3748"]{ color:var(--text) !important; }
         [style*="#1a365d"]{ color:var(--heading) !important; }
@@ -395,7 +419,7 @@
                     <br/>
                     Currently pursuing a B.A. in Theoretical Physics at Trinity College Dublin.
                     I love learning about how things work, which has led me to work on several projects ranging from applied engineering to computational modelling.
-                    I’m particularly interested in energy production, grid management, trading strategies, and space technology.
+                    I'm particularly interested in energy production, grid management, trading strategies, and space technology.
                     <br/>
                     <br/>
                     
@@ -442,7 +466,7 @@
                       </ul>
                     </div>
                   
-                    <!-- YEAR 1 (spans both columns; remove class="span-2" if you want 3-up) -->
+                    <!-- YEAR 1 (spans both columns) -->
                     <div class="module-year span-2">
                       <h3>Year 1 (Junior Fresh)</h3>
                       <ul>
@@ -493,7 +517,7 @@
 
                 <!-- Education subsection -->
                 <div class="cv-section">
-                    <h3>Education <span style="font-size: 14px; font-weight: normal; color: #718096; font-style: italic;">- Transcripts available upon request</span></h3>
+                    <h3>Education <span style="font-size: 14px; font-weight: normal; color: #718096; font-style: italic;"></span></h3>
                     
                     <div class="cv-item">
                         <div style="display: flex; justify-content: space-between; align-items: baseline;">
@@ -504,7 +528,7 @@
                             <p style="font-weight: 600;">B.A. (Mod) Theoretical Physics <span style="color: #718096; font-style: italic; font-weight: normal;">- Penultimate year</span></p>
                             <p class="date" style="margin-bottom: 0;">May 2027</p>
                         </div>
-                        
+                    </div>
                 </div>
 
                 <!-- Experience subsection -->
@@ -611,8 +635,6 @@
                         <a href="https://github.com/Matth3wc" target="_blank">github.com/Matth3wc</a>
                     </div>
 
-            
-
                     <!-- Location contact item -->
                     <div class="contact-item">
                         <strong>Location:</strong>
@@ -624,7 +646,7 @@
                 <p style="margin-top: 40px; color: #718096;">
                     Feel free to reach out if you'd like to discuss research opportunities, collaborative projects, or just to chat about anything interesting. I'm always open to connecting with all types of individuals!
                 </p>
-                </div>
+                
             </div>
         </div>
 
