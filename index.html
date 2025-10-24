@@ -1,66 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-
     <meta name="google-site-verification" content="54dHc3FSOlV8Tdmx_SoHkQZiJvRHbdxlOaQchMuLhHg" />
-        <!-- SEO meta tags -->
     <meta name="description" content="Matthew Conway - Theoretical Physics student at Trinity College Dublin. This website discusses my education, experience and interests. Here you can find some of my previous work, .">
     <meta name="keywords" content="Matthew Conway, Mathew Conway, Matthew Conwa, Matthew Conay, Matthe Conway, Mattew Conway, Matthew Coway, Matthew Coay, Theoretical Physics, Computational Physics, Trinity College Dublin, Research Portfolio, AI Projects, Python Developer, MCMC Methods, Quantum Mechanics, Physics Research, Math, Maths, Mathematics, STEM, Energy production Coding Portfolio, Trading Algorithms">
     <meta name="author" content="Matthew Conway">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://Matth3wc.github.io/">
-
-    <!-- Character encoding for the document -->
     <meta charset="UTF-8">
-    <!-- Viewport settings for responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Page title that appears in browser tab -->
     <title>Matthew Conway - Portfolio</title>
     <style>
-        /* ========= Dark-mode design tokens (permanent) ========= */
         :root, :root.dark{
-            --bg:        #0b1220;   /* page background */
-            --surface:   #101827;   /* cards / panels */
-            --text:      #a8b3c1;   /* main text */
-            --muted:     #94a3b8;   /* secondary text */
-            --heading:   #b2bfcf;   /* headings */
-            --accent:    #8ab4f8;   /* links / accents */
-            --border:    #253046;   /* separators */
+            --bg:        #0b1220;
+            --surface:   #101827;
+            --text:      #a8b3c1;
+            --muted:     #94a3b8;
+            --heading:   #b2bfcf;
+            --accent:    #8ab4f8;
+            --border:    #253046;
         }
 
-        /* Reset default browser styles for consistency */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Base body styling */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: var(--text);
             background: var(--bg);
+            position: relative;
         }
 
-        /* Main container using flexbox layout */
+        /* Vector field canvas */
+        #vectorField {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
         .container {
             display: flex;
             min-height: 100vh;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Left content area styling - RESPONSIVE */
         .content {
             flex: 1;
             padding: clamp(40px, 8vh, 80px) clamp(30px, 5vw, 60px);
             margin-right: clamp(250px, 20vw, 310px);
-            background: var(--bg);
+            background: transparent;
         }
 
-        /* Right sidebar navigation styling - RESPONSIVE */
         .sidebar {
             width: clamp(250px, 20vw, 310px);
-            background: var(--bg);
+            background: transparent;
             color: var(--text);
             position: fixed;
             right: 0;
@@ -71,14 +73,12 @@
             border-left: 1px solid var(--border);
         }
 
-        /* Navigation container inside sidebar */
         .sidebar nav {
             display: flex;
             flex-direction: column;
             gap: 0;
         }
 
-        /* Navigation link styling - RESPONSIVE */
         .sidebar a {
             color: var(--muted);
             text-decoration: none;
@@ -91,18 +91,15 @@
             display: block;
         }
 
-        /* Navigation link hover effect */
         .sidebar a:hover {
             color: var(--text);
         }
 
-        /* Active navigation link styling */
         .sidebar a.active {
             color: var(--accent);
             font-weight: 500;
         }
 
-        /* Corner logo - RESPONSIVE */
         .corner-logo {
             position: fixed;
             justify-content: center;
@@ -123,42 +120,35 @@
             opacity: 1;
         }
 
-        /* Section container - hidden by default */
         .section {
             display: none;
             animation: fadeIn 0.5s ease;
         }
 
-        /* Active section - visible */
         .section.active {
             display: block;
         }
 
-        /* Fade in animation definition */
         @keyframes fadeIn {
             from { opacity: 1; }
             to   { opacity: 1; }
         }
 
-        /* Ensure nothing else sneaks in */
         .section { 
             animation: fadeIn 300ms linear;
             transform: none !important;
         }
 
-        /* Accessibility: respect reduced motion */
         @media (prefers-reduced-motion: reduce) {
             .section { animation: none; }
         }
 
-        /* Main heading (H1) styling - RESPONSIVE */
         h1 {
             font-size: clamp(36px, 5vw, 52px);
             margin-bottom: clamp(8px, 1vh, 10px);
             color: var(--accent);
         }
 
-        /* Subheading styling - RESPONSIVE */
         .subheading {
             font-size: clamp(18px, 2vw, 24px);
             color: var(--muted);
@@ -166,7 +156,6 @@
             font-weight: 400;
         }
 
-        /* Section heading (H2) styling - RESPONSIVE */
         h2 {
             font-size: clamp(28px, 3.5vw, 36px);
             margin-bottom: clamp(20px, 3vh, 30px);
@@ -175,7 +164,6 @@
             padding-bottom: clamp(8px, 1vh, 10px);
         }
 
-        /* Blurb/introduction paragraph styling - RESPONSIVE */
         .blurb {
             font-size: clamp(16px, 1.5vw, 20px);
             color: var(--muted);
@@ -184,7 +172,6 @@
             line-height: 1.8;
         }
 
-        /* Study and interest item card styling - RESPONSIVE */
         .study-item, .interest-item {
             margin-bottom: clamp(20px, 3vh, 30px);
             padding: clamp(15px, 2vw, 20px);
@@ -193,13 +180,11 @@
             border-left: 4px solid var(--accent);
         }
 
-        /* Headings inside study and interest items */
         .study-item h3, .interest-item h3 {
             color: var(--text);
             margin-bottom: clamp(8px, 1vh, 10px);
         }
 
-        /* Modules grid */
         .modules-grid{
             display: grid;
             grid-template-columns: repeat(2, minmax(320px, 1fr));
@@ -222,41 +207,34 @@
             font-size: clamp(14px, 1.4vw, 16px);
         }
 
-        /* Make it single-column on narrow screens */
         @media (max-width: 900px){
             .modules-grid{ grid-template-columns: 1fr; }
         }
 
-        /* If you want a block to span both columns (e.g., Year 1) */
         .span-2{ grid-column: 1 / -1; }
 
-        /* CV section container - RESPONSIVE */
         .cv-section {
             margin-bottom: clamp(30px, 4vh, 40px);
         }
 
-        /* CV section headings - RESPONSIVE */
         .cv-section h3 {
             color: var(--text);
             margin-bottom: clamp(12px, 1.5vh, 15px);
             font-size: clamp(20px, 2.2vw, 24px);
         }
 
-        /* Individual CV item styling - RESPONSIVE */
         .cv-item {
             margin-bottom: clamp(15px, 2vh, 20px);
             padding-left: clamp(15px, 2vw, 20px);
             border-left: 2px solid var(--accent);
         }
 
-        /* CV item heading - RESPONSIVE */
         .cv-item h4 {
             color: var(--text);
             margin-bottom: 5px;
             font-size: clamp(16px, 1.6vw, 18px);
         }
 
-        /* Date text in CV items */
         .cv-item .date {
             color: var(--accent);
             font-weight: bold;
@@ -264,7 +242,6 @@
             font-size: clamp(13px, 1.3vw, 14px);
         }
 
-        /* Contact information container - RESPONSIVE */
         .contact-info {
             display: flex;
             flex-direction: column;
@@ -272,7 +249,6 @@
             max-width: min(800px, 90vw);
         }
 
-        /* Individual contact item styling - RESPONSIVE */
         .contact-item {
             display: flex;
             align-items: center;
@@ -282,24 +258,20 @@
             font-size: clamp(14px, 1.4vw, 16px);
         }
 
-        /* Contact item labels */
         .contact-item strong {
             color: var(--text);
             min-width: clamp(80px, 10vw, 100px);
         }
 
-        /* Contact item links */
         .contact-item a {
             color: var(--accent);
             text-decoration: none;
         }
 
-        /* Contact item link hover effect */
         .contact-item a:hover {
             text-decoration: underline;
         }
 
-        /* Project item styling - RESPONSIVE */
         .project-item {
             margin-bottom: clamp(20px, 3vh, 30px);
             padding: clamp(15px, 2vw, 20px);
@@ -332,14 +304,11 @@
             font-size: clamp(14px, 1.4vw, 16px);
         }
 
-        /* Mobile responsive styles for screens 768px and smaller */
         @media (max-width: 768px) {
-            /* Change container to vertical stack on mobile */
             .container {
                 flex-direction: column;
             }
 
-            /* Adjust sidebar for mobile */
             .sidebar {
                 position: relative;
                 width: 100%;
@@ -350,30 +319,25 @@
                 border-bottom: 1px solid var(--border);
             }
 
-            /* Horizontal navigation on mobile */
             .sidebar nav {
                 flex-direction: row;
                 flex-wrap: wrap;
                 gap: 10px;
             }
 
-            /* Reduce content padding on mobile */
             .content {
                 padding: 5vh 5vw;
                 margin-right: 0;
             }
 
-            /* Make blurb full width on mobile */
             .blurb {
                 max-width: 100%;
             }
 
-            /* Make contact info full width on mobile */
             .contact-info {
                 max-width: 100%;
             }
 
-            /* Adjust corner logo for mobile */
             .corner-logo {
                 position: relative;
                 bottom: auto;
@@ -390,7 +354,6 @@
             }
         }
 
-        /* ===== Quick overrides for existing inline hex styles in your HTML ===== */
         [style*="#718096"]{ color:var(--muted) !important; }
         [style*="#2d3748"]{ color:var(--text) !important; }
         [style*="#1a365d"]{ color:var(--heading) !important; }
@@ -401,43 +364,29 @@
     </style>
 </head>
 <body>
+    <!-- Vector field canvas -->
+    <canvas id="vectorField"></canvas>
 
-    <!-- Main container for the entire page -->
     <div class="container">
-        <!-- Left side content area -->
         <div class="content">
-            <!-- HOME SECTION - Default active section -->
             <div id="home" class="section active">
-                <!-- Main heading with your name -->
                 <h1>Matthew Conway</h1>
                 <div class="subheading">Student of Theoretical Physics <br/> at Trinity College Dublin</div>
-                <!-- Introduction paragraph -->
                 <p class="blurb">
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
+                    <br/><br/><br/><br/>
                     Currently pursuing a B.A. in Theoretical Physics at Trinity College Dublin.
                     I love learning about how things work, which has led me to work on several projects ranging from applied engineering to computational modelling.
                     I'm particularly interested in energy production, grid management, trading strategies, and space technology.
-                    <br/>
-                    <br/>
-                    
+                    <br/><br/>
                     Outside of academics, I enjoy playing poker, guitar, and surfing.
                 </p>
-                
             </div>
 
-            <!-- STUDIES SECTION - Hidden by default -->
             <div id="studies" class="section">
-                <!-- Main heading with your name -->
                 <h1>Matthew Conway</h1>
-                <!-- Subheading -->
                 <div class="subheading">Student of Theoretical Physics <br/> at Trinity College Dublin</div>
                 
                 <div class="modules-grid">
-
-                    <!-- YEAR 3 -->
                     <div class="module-year">
                       <h3>Year 3 (Junior Sophister)</h3>
                       <ul>
@@ -451,7 +400,6 @@
                       </ul>
                     </div>
                   
-                    <!-- YEAR 2 -->
                     <div class="module-year">
                       <h3>Year 2 (Senior Fresh)</h3>
                       <ul>
@@ -466,7 +414,6 @@
                       </ul>
                     </div>
                   
-                    <!-- YEAR 1 (spans both columns) -->
                     <div class="module-year span-2">
                       <h3>Year 1 (Junior Fresh)</h3>
                       <ul>
@@ -478,47 +425,29 @@
                         <li>Physics for Theoretical Physics (Sem 1 &amp; Sem 2)</li>
                       </ul>
                     </div>
-                  
-                  </div>
-                  
+                </div>
             </div>
 
-            <!-- INTERESTS SECTION - Hidden by default -->
             <div id="interests" class="section">
-                <!-- Main heading with your name -->
                 <h1>Matthew Conway</h1>
-                <!-- Subheading -->
                 <div class="subheading">Student of Theoretical Physics <br/> at Trinity College Dublin</div>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+                <br/><br/><br/><br/><br/>
                 <p class="blurb">
                     I enjoy listening to music and playing guitar, taking inspiration from artists like Dire Straits, Stevie Ray Vaughan, and Fleetwood Mac. I especially enjoy improvising and jamming with friends who play different instruments.
-                    <br/>
-                    <br/>
+                    <br/><br/>
                     I also like playing poker with friends, experimenting with different betting strategies and exploring controlled or misleading information, such as deliberate or randomized tells.
-                    <br/>
-                    <br/>
+                    <br/><br/>
                     When the weather allows, I love surfing with friends. My favourite spots are Inch Beach in Kerry and Rossnowlagh in Donegal, though on the right day, Dublin can be great too.
                 </p>
             </div>
 
-
-            <!-- CV SECTION - Hidden by default -->
             <div id="cv" class="section">
-                <!-- Main heading with your name -->
                 <h1>Matthew Conway</h1>
-                <!-- Subheading -->
                 <div class="subheading">Student of Theoretical Physics <br/> at Trinity College Dublin</div>
                 <p>You can view my full CV as a pdf here: <a href="assets/MatthewConwayCV.pdf" target="_blank">CV</a></p>
                 
-
-                <!-- Education subsection -->
                 <div class="cv-section">
-                    <h3>Education <span style="font-size: 14px; font-weight: normal; color: #718096; font-style: italic;"></span></h3>
-                    
+                    <h3>Education</h3>
                     <div class="cv-item">
                         <div style="display: flex; justify-content: space-between; align-items: baseline;">
                             <h4>Trinity College Dublin</h4>
@@ -531,11 +460,9 @@
                     </div>
                 </div>
 
-                <!-- Experience subsection -->
                 <div class="cv-section">
                     <h3>Experience</h3>
                     
-                    <!-- Computational Physics Intern -->
                     <div class="cv-item">
                         <div style="display: flex; justify-content: space-between; align-items: baseline;">
                             <h4>Trinity College Dublin</h4>
@@ -545,10 +472,8 @@
                             <p style="font-style: italic; color: #718096;">Computational Physics Intern, Hamilton Mathematics Institute</p>
                             <p class="date" style="margin-bottom: 0;">May 2025 – June 2025</p>
                         </div>
-                        
                     </div>
 
-                    <!-- Recruitment Consultant -->
                     <div class="cv-item">
                         <div style="display: flex; justify-content: space-between; align-items: baseline;">
                             <h4>Your World Healthcare <span style="font-weight: normal; font-style: italic; font-size: 14px; color: #718096;">- Gap year to help finance university studies.</span></h4>
@@ -558,10 +483,8 @@
                             <p style="font-style: italic; color: #718096;">Recruitment Consultant</p>
                             <p class="date" style="margin-bottom: 0;">November 2022 – June 2023</p>
                         </div>
-                        
                     </div>
 
-                    <!-- Private Tutor -->
                     <div class="cv-item">
                         <div style="display: flex; justify-content: space-between; align-items: baseline;">
                             <h4>Self-Employed</h4>
@@ -571,15 +494,12 @@
                             <p style="font-style: italic; color: #718096;">Private Maths Tutor</p>
                             <p class="date" style="margin-bottom: 0;">September 2022 – Ongoing</p>
                         </div>
-                        
                     </div>
                 </div>
 
-                <!-- Projects subsection -->
                 <div class="cv-section">
                     <h3>Projects</h3>
                     
-                    <!-- Trinity Floating Offshore Wind -->
                     <div class="cv-item">
                         <div style="display: flex; justify-content: space-between; align-items: baseline;">
                             <h4>Trinity Floating Offshore Wind</h4>
@@ -589,10 +509,8 @@
                             <p style="font-style: italic; color: #718096;">Structural Design Lead</p>
                             <p class="date" style="margin-bottom: 0;">September 2024 – Ongoing</p>
                         </div>
-                       
                     </div>
 
-                    <!-- Agent-Based Model -->
                     <div class="cv-item">
                         <div style="display: flex; justify-content: space-between; align-items: baseline;">
                             <h4>Agent-Based Model of Bee/Flora Dynamics</h4>
@@ -602,103 +520,179 @@
                             <p style="font-style: italic; color: #718096;">Student Led Research Project</p>
                             <p class="date" style="margin-bottom: 0;">January 2025 – May 2025</p>
                         </div>
-                        
                     </div>
                 </div>
-
             </div>
 
-            <!-- CONTACT SECTION - Hidden by default -->
             <div id="contact" class="section">
-                <!-- Section heading -->
                 <h1>Matthew Conway</h1>
-                <!-- Subheading -->
                 <div class="subheading">Student of Theoretical Physics <br/> at Trinity College Dublin</div>
                 
-                <!-- Contact information container -->
                 <div class="contact-info">
-                    <!-- Email contact item -->
                     <div class="contact-item">
                         <strong>Email:</strong>
                         <a href="mailto:mconway1@tcd.ie">mconway1@tcd.ie</a>
                     </div>
 
-                    <!-- LinkedIn contact item -->
                     <div class="contact-item">
                         <strong>LinkedIn:</strong>
                         <a href="https://www.linkedin.com/in/matthew-conway-91909623b" target="_blank">linkedin.com/in/matthew-conway-91909623b</a>
                     </div>
 
-                    <!-- GitHub contact item -->
                     <div class="contact-item">
                         <strong>GitHub:</strong>
                         <a href="https://github.com/Matth3wc" target="_blank">github.com/Matth3wc</a>
                     </div>
 
-                    <!-- Location contact item -->
                     <div class="contact-item">
                         <strong>Location:</strong>
                         <span>Dublin, Ireland (Dual Irish-US Citizen)</span>
                     </div>
                 </div>
 
-                <!-- Closing message -->
                 <p style="margin-top: 40px; color: #718096;">
                     Feel free to reach out if you'd like to discuss research opportunities, collaborative projects, or just to chat about anything interesting. I'm always open to connecting with all types of individuals!
                 </p>
-                
             </div>
         </div>
 
-        <!-- Right sidebar navigation -->
         <div class="sidebar">
             <nav>
-                <!-- Navigation link to Home section - active by default -->
                 <a href="#home" class="nav-link active" onclick="showSection('home')">Home</a>
-                <!-- Navigation link to Studies section -->
                 <a href="#studies" class="nav-link" onclick="showSection('studies')">Studies</a>
-                <!-- Navigation link to Interests section -->
                 <a href="#interests" class="nav-link" onclick="showSection('interests')">Interests</a>
-                <!-- Navigation link to CV section -->
                 <a href="#cv" class="nav-link" onclick="showSection('cv')">CV</a>
-                <!-- Navigation link to Contact section -->
                 <a href="#contact" class="nav-link" onclick="showSection('contact')">Contact</a>
             </nav>
 
             <a class="corner-logo" href="#home" aria-label="Home">
                 <img src="assets/eye-logo.png" alt="Logo">
             </a>
-              
         </div>
     </div>
 
     <script>
-        // Function to show selected section and hide others
         function showSection(sectionId) {
-            // Get all section elements
             const sections = document.querySelectorAll('.section');
-            // Loop through each section
             sections.forEach(section => {
-                // Remove 'active' class to hide section
                 section.classList.remove('active');
             });
 
-            // Show the selected section by adding 'active' class
             document.getElementById(sectionId).classList.add('active');
 
-            // Get all navigation links
             const navLinks = document.querySelectorAll('.nav-link');
-            // Loop through each navigation link
             navLinks.forEach(link => {
-                // Remove 'active' class from all links
                 link.classList.remove('active');
             });
-            // Add 'active' class to clicked link
             event.target.classList.add('active');
 
-            // Prevent default link behavior (page jump)
             event.preventDefault();
         }
+
+        // Vector field background
+        const canvas = document.getElementById('vectorField');
+        const ctx = canvas.getContext('2d');
+        
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let vectors = [];
+        
+        const GRID_SPACING = 50;
+        const ARROW_LENGTH = 30;
+        const MAX_DISTANCE = 400;
+        const MIN_ALPHA = 0.02;
+        const MAX_ALPHA = 0.25;
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initVectors();
+        }
+        
+        function initVectors() {
+            vectors = [];
+            const cols = Math.ceil(canvas.width / GRID_SPACING);
+            const rows = Math.ceil(canvas.height / GRID_SPACING);
+            
+            for (let i = 0; i < cols; i++) {
+                for (let j = 0; j < rows; j++) {
+                    vectors.push({
+                        x: i * GRID_SPACING + GRID_SPACING / 2,
+                        y: j * GRID_SPACING + GRID_SPACING / 2
+                    });
+                }
+            }
+        }
+        
+        function drawArrow(x, y, angle, alpha) {
+            const endX = x + Math.cos(angle) * ARROW_LENGTH;
+            const endY = y + Math.sin(angle) * ARROW_LENGTH;
+            
+            ctx.strokeStyle = `rgba(138, 180, 248, ${alpha})`;
+            ctx.fillStyle = `rgba(138, 180, 248, ${alpha})`;
+            ctx.lineWidth = 1.5;
+            
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(endX, endY);
+            ctx.stroke();
+            
+            const headLength = 6;
+            const headAngle = Math.PI / 6;
+            
+            ctx.beginPath();
+            ctx.moveTo(endX, endY);
+            ctx.lineTo(
+                endX - headLength * Math.cos(angle - headAngle),
+                endY - headLength * Math.sin(angle - headAngle)
+            );
+            ctx.lineTo(
+                endX - headLength * Math.cos(angle + headAngle),
+                endY - headLength * Math.sin(angle + headAngle)
+            );
+            ctx.closePath();
+            ctx.fill();
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            vectors.forEach(vector => {
+                const dx = mouseX - vector.x;
+                const dy = mouseY - vector.y;
+                const angle = Math.atan2(dy, dx);
+                
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                let alpha;
+                if (distance > MAX_DISTANCE) {
+                    alpha = MIN_ALPHA;
+                } else {
+                    const normalizedDist = distance / MAX_DISTANCE;
+                    alpha = MIN_ALPHA + (MAX_ALPHA - MIN_ALPHA) * Math.pow(1 - normalizedDist, 2);
+                }
+                
+                drawArrow(vector.x, vector.y, angle, alpha);
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY + window.scrollY;
+        });
+        
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouseX = e.touches[0].clientX;
+                mouseY = e.touches[0].clientY + window.scrollY;
+            }
+        });
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        animate();
     </script>
 </body>
 </html>
