@@ -35,7 +35,6 @@
             position: relative;
         }
 
-        /* Vector field canvas */
         #vectorField {
             position: fixed;
             top: 0;
@@ -364,7 +363,6 @@
     </style>
 </head>
 <body>
-    <!-- Vector field canvas -->
     <canvas id="vectorField"></canvas>
 
     <div class="container">
@@ -589,19 +587,23 @@
             event.preventDefault();
         }
 
-        // Vector field background
         const canvas = document.getElementById('vectorField');
         const ctx = canvas.getContext('2d');
         
         let mouseX = window.innerWidth / 2;
         let mouseY = window.innerHeight / 2;
         let vectors = [];
+        let sinks = [];
+        let lastSinkTime = 0;
         
-        const GRID_SPACING = 50;
-        const ARROW_LENGTH = 30;
+        const GRID_SPACING = 40;
+        const ARROW_LENGTH = 25;
         const MAX_DISTANCE = 400;
         const MIN_ALPHA = 0.02;
-        const MAX_ALPHA = 0.25;
+        const MAX_ALPHA = 0.8;
+        const SINK_INTERVAL = 0.0005;
+        const SINK_LIFETIME = 60000;
+        const SINK_RADIUS = 200;
         
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -655,22 +657,39 @@
         }
         
         function animate() {
+            const currentTime = Date.now();
+            
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            sinks = sinks.filter(sink => currentTime - sink.createdAt < SINK_LIFETIME);
             
             vectors.forEach(vector => {
                 const dx = mouseX - vector.x;
                 const dy = mouseY - vector.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
-                // Base angle pointing toward mouse
                 const baseAngle = Math.atan2(dy, dx);
                 
-                // Add curl (rotational component) that increases closer to mouse
-                const curlStrength = 0.3; // Adjust this to control curl intensity
+                const curlStrength = 0.05;
                 const normalizedDist = Math.min(distance / MAX_DISTANCE, 1);
                 const curlAmount = curlStrength * Math.PI * 0.5 * (1 - normalizedDist);
                 
-                const angle = baseAngle + curlAmount;
+                let angle = baseAngle + curlAmount;
+                
+                sinks.forEach(sink => {
+                    const sinkDx = sink.x - vector.x;
+                    const sinkDy = sink.y - vector.y;
+                    const sinkDistance = Math.sqrt(sinkDx * sinkDx + sinkDy * sinkDy);
+                    
+                    if (sinkDistance < SINK_RADIUS) {
+                        const age = currentTime - sink.createdAt;
+                        const fadeStrength = 1 - (age / SINK_LIFETIME);
+                        const sinkAngle = Math.atan2(sinkDy, sinkDx);
+                        const sinkInfluence = fadeStrength * (1 - sinkDistance / SINK_RADIUS) * 0.3;
+                        
+                        angle += sinkInfluence * Math.PI * 0.1;
+                    }
+                });
                 
                 let alpha;
                 if (distance > MAX_DISTANCE) {
@@ -688,12 +707,32 @@
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY + window.scrollY;
+            
+            const currentTime = Date.now();
+            if (currentTime - lastSinkTime > SINK_INTERVAL) {
+                sinks.push({
+                    x: mouseX,
+                    y: mouseY,
+                    createdAt: currentTime
+                });
+                lastSinkTime = currentTime;
+            }
         });
         
         document.addEventListener('touchmove', (e) => {
             if (e.touches.length > 0) {
                 mouseX = e.touches[0].clientX;
                 mouseY = e.touches[0].clientY + window.scrollY;
+                
+                const currentTime = Date.now();
+                if (currentTime - lastSinkTime > SINK_INTERVAL) {
+                    sinks.push({
+                        x: mouseX,
+                        y: mouseY,
+                        createdAt: currentTime
+                    });
+                    lastSinkTime = currentTime;
+                }
             }
         });
         
