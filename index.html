@@ -660,15 +660,22 @@
             vectors.forEach(vector => {
                 const dx = mouseX - vector.x;
                 const dy = mouseY - vector.y;
-                const angle = Math.atan2(dy, dx);
-                
                 const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Base angle pointing toward mouse
+                const baseAngle = Math.atan2(dy, dx);
+                
+                // Add curl (rotational component) that increases closer to mouse
+                const curlStrength = 0.3; // Adjust this to control curl intensity
+                const normalizedDist = Math.min(distance / MAX_DISTANCE, 1);
+                const curlAmount = curlStrength * Math.PI * 0.5 * (1 - normalizedDist);
+                
+                const angle = baseAngle + curlAmount;
                 
                 let alpha;
                 if (distance > MAX_DISTANCE) {
                     alpha = MIN_ALPHA;
                 } else {
-                    const normalizedDist = distance / MAX_DISTANCE;
                     alpha = MIN_ALPHA + (MAX_ALPHA - MIN_ALPHA) * Math.pow(1 - normalizedDist, 2);
                 }
                 
